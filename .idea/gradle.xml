@@ -6,14 +6,8 @@
       <GradleProjectSettings>
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="Embedded JDK" />
-        <option name="modules">
-          <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
-          </set>
-        </option>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/HolaOrder/app" />
+        <option name="gradleJvm" value="11" />
       </GradleProjectSettings>
     </option>
   </component>
