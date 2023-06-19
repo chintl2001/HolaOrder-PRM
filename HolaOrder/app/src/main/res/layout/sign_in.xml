@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                                   android:layout_height="match_parent" android:background="#FFB900">
+
+    <View
+            android:layout_width="412dp"
+            android:layout_height="513dp" android:id="@+id/view" tools:layout_editor_absoluteY="218dp"
+            tools:layout_editor_absoluteX="0dp"
+            android:background="@drawable/border_login"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
