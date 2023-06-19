@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "373803358529",
+    "project_id": "prmproject-2a70f",
+    "storage_bucket": "prmproject-2a70f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:373803358529:android:a193ed8190c14be136e9c0",
+        "android_client_info": {
+          "package_name": "com.example.holaorder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "373803358529-n5ujgjau64toraipsv1mtpqko7pfe63l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.holaorder",
+            "certificate_hash": "a76a207fb8abf33f8bc5fdb61245406975a75c9e"
+          }
+        },
+        {
+          "client_id": "373803358529-atli40u5a30u8a0qtcd2kfb4jr45792s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClcGeegiqpLuJX-qaFHglcMgDBY7ZIMD8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "373803358529-atli40u5a30u8a0qtcd2kfb4jr45792s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
