@@ -7,14 +7,10 @@
             android:layout_width="412dp"
             android:layout_height="513dp" android:id="@+id/view" tools:layout_editor_absoluteY="218dp"
             tools:layout_editor_absoluteX="0dp"
-<<<<<<< Updated upstream
             android:background="@drawable/border_login"/>
-=======
-            android:background="@drawable/border_login" android:textAlignment="center"/>
     <TextView
             android:text="SignIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/textView4" tools:layout_editor_absoluteY="27dp"
-            tools:layout_editor_absoluteX="29dp" android:textSize="24sp" android:textStyle="bold"/>
->>>>>>> Stashed changes
+            tools:layout_editor_absoluteX="29dp" android:textSize="16sp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
