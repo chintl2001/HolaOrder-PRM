@@ -1,31 +1,20 @@
 {
   "project_info": {
-<<<<<<< Updated upstream
-    "project_number": "373803358529",
-    "project_id": "prmproject-2a70f",
-    "storage_bucket": "prmproject-2a70f.appspot.com"
-=======
     "project_number": "15167446969",
     "firebase_url": "https://holaorder-default-rtdb.firebaseio.com",
     "project_id": "holaorder",
     "storage_bucket": "holaorder.appspot.com"
->>>>>>> Stashed changes
   },
   "client": [
     {
       "client_info": {
-<<<<<<< Updated upstream
-        "mobilesdk_app_id": "1:373803358529:android:a193ed8190c14be136e9c0",
-=======
         "mobilesdk_app_id": "1:15167446969:android:19c0b5e58b87b82f6ca068",
->>>>>>> Stashed changes
         "android_client_info": {
           "package_name": "com.example.holaorder"
         }
       },
       "oauth_client": [
         {
-<<<<<<< Updated upstream
           "client_id": "373803358529-n5ujgjau64toraipsv1mtpqko7pfe63l.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -34,31 +23,20 @@
           }
         },
         {
-          "client_id": "373803358529-atli40u5a30u8a0qtcd2kfb4jr45792s.apps.googleusercontent.com",
-=======
           "client_id": "15167446969-dba96tud5gct43c8jo9bofqrh5gnhn7t.apps.googleusercontent.com",
->>>>>>> Stashed changes
           "client_type": 3
         }
       ],
       "api_key": [
         {
-<<<<<<< Updated upstream
-          "current_key": "AIzaSyClcGeegiqpLuJX-qaFHglcMgDBY7ZIMD8"
-=======
           "current_key": "AIzaSyDk-jnxc624Jugfc1Lawk8Bh3Zxx0HjA9Q"
->>>>>>> Stashed changes
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-<<<<<<< Updated upstream
-              "client_id": "373803358529-atli40u5a30u8a0qtcd2kfb4jr45792s.apps.googleusercontent.com",
-=======
               "client_id": "15167446969-dba96tud5gct43c8jo9bofqrh5gnhn7t.apps.googleusercontent.com",
->>>>>>> Stashed changes
               "client_type": 3
             }
           ]
