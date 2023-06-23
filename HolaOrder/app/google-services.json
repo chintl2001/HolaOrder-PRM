@@ -15,14 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "373803358529-n5ujgjau64toraipsv1mtpqko7pfe63l.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.holaorder",
-            "certificate_hash": "a76a207fb8abf33f8bc5fdb61245406975a75c9e"
-          }
-        },
-        {
           "client_id": "15167446969-dba96tud5gct43c8jo9bofqrh5gnhn7t.apps.googleusercontent.com",
           "client_type": 3
         }

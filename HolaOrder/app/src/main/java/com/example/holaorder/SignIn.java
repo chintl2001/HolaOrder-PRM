@@ -2,6 +2,8 @@ package com.example.holaorder;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.os.Debug;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +14,8 @@ import android.os.Bundle;
 import com.example.holaorder.Model.User;
 import com.google.firebase.database.*;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 public class SignIn extends AppCompatActivity {
     EditText edtUsername, edtPassword;
@@ -38,25 +42,27 @@ public class SignIn extends AppCompatActivity {
                 mDialog.setMessage("Please waiting...");
                 mDialog.show();
 
-                table_user.addValueEventListener(new ValueEventListener() {
+                table_user.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                        // Check if user exists in the database
-                        if (snapshot.child(edtUsername.getText().toString()).exists()) {
-                            // Get user information
-                            mDialog.dismiss();
-                            User user = snapshot.child(edtUsername.getText().toString()).getValue(User.class);
-                            if (user.getPassword().equals(edtPassword.getText().toString())) {
+                        mDialog.dismiss();
+                        for (DataSnapshot userSnapshot : snapshot.getChildren()) {
+                            String phoneNumber = userSnapshot.getKey();
+                            if(phoneNumber == null){
+                                Toast.makeText(SignIn.this, "User does not have in database!", Toast.LENGTH_SHORT).show();
+                            }
+                            String name = userSnapshot.child("Name").getValue(String.class);
+                            String password = userSnapshot.child("Password").getValue(String.class);
+                            User user = new User(name, password, phoneNumber);
+                            Log.d("MyApp", "User: " + phoneNumber + ", Name: " + name + ", Password: " + password);
+
+                            if (Objects.equals(user.getPassword(), edtPassword.getText().toString())) {
                                 Toast.makeText(SignIn.this, "Sign in successfully!", Toast.LENGTH_SHORT).show();
                             } else {
                                 Toast.makeText(SignIn.this, "Sign in failed!", Toast.LENGTH_SHORT).show();
                             }
-                        } else {
-                            mDialog.dismiss();
-                            Toast.makeText(SignIn.this, "User does not exist in the database", Toast.LENGTH_SHORT).show();
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull @NotNull DatabaseError error) {
                         // Handle onCancelled event
