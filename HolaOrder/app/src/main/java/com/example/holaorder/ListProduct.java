@@ -34,17 +34,17 @@ public class ListProduct extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerViewCategory.setLayoutManager(layoutManager);
 
-        loadCategory();
+//        loadCategory();
 
 
     }
 
-    private void loadCategory() {
-        FirebaseRecyclerAdapter<Category, CategoryViewHolder> adapter = new FirebaseRecyclerAdapter<Category, CategoryViewHolder>(Category.class, R.layout.item_category, CategoryViewHolder.class, category) {
-            @Override
-            protected void populateViewHolder(CategoryViewHolder categoryViewHolder, Category category, int i) {
-
-            }
-        };
-    }
+//    private void loadCategory() {
+//        FirebaseRecyclerAdapter<Category, CategoryViewHolder> adapter = new FirebaseRecyclerAdapter<Category, CategoryViewHolder>(Category.class, R.layout.item_category, CategoryViewHolder.class, category) {
+//            @Override
+//            protected void populateViewHolder(CategoryViewHolder categoryViewHolder, Category category, int i) {
+//
+//            }
+//        };
+//    }
 }

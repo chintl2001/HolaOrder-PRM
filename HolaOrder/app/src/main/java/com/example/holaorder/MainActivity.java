@@ -5,9 +5,11 @@ import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     Button btnSignUp, btnSignIn;
+    TextView signInNow;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +32,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent signup = new Intent(MainActivity.this, SignUp.class);
                 startActivity(signup);
+            }
+        });
+    }
+
+    public void SignInNow(View view) {
+        signInNow = ((TextView) findViewById(R.id.tv_signin));
+        signInNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent signin = new Intent(MainActivity.this, SignIn.class);
+                startActivity(signin);
             }
         });
     }
