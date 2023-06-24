@@ -8,8 +8,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    Button btnSignUp, btnSignIn;
-    TextView signInNow;
+    Button btnSignUp, btnSignIn, btnLoginNow;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnSignIn = ((Button) findViewById(R.id.btnSignin));
         btnSignUp = ((Button) findViewById(R.id.btnSignup));
-
+        btnLoginNow = ((Button) findViewById(R.id.btn_loginNow));
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,14 +35,5 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void SignInNow(View view) {
-        signInNow = ((TextView) findViewById(R.id.tv_signin));
-        signInNow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent signin = new Intent(MainActivity.this, SignIn.class);
-                startActivity(signin);
-            }
-        });
-    }
+
 }
