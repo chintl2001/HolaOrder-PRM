@@ -88,7 +88,7 @@ public class SignUp extends AppCompatActivity {
                                     });
                         }
                     }
-
+                    //Đừng lỗi nữa pls
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         mDialog.dismiss();
