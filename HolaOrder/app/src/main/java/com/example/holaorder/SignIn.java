@@ -60,7 +60,7 @@ public class SignIn extends AppCompatActivity {
                             Log.d("MyApp", "User: " + phoneNumber + ", Name: " + name + ", Password: " + password);
 
                             if (Objects.equals(user.getPassword(), edtPassword.getText().toString())) {
-                                //Toast.makeText(SignIn.this, "Sign in successfully!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignIn.this, "Sign in successfully!", Toast.LENGTH_SHORT).show();
                                 Intent homeIntent = new Intent(SignIn.this, Home.class);
                                 Common.currentUser = user;
                                 startActivity(homeIntent);
