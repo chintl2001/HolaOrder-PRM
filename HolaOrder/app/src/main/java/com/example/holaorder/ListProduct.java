@@ -44,7 +44,6 @@ public class ListProduct extends AppCompatActivity {
 
     }
 
-<<<<<<< Updated upstream
 //    private void loadCategory() {
 //        FirebaseRecyclerAdapter<Category, CategoryViewHolder> adapter = new FirebaseRecyclerAdapter<Category, CategoryViewHolder>(Category.class, R.layout.item_category, CategoryViewHolder.class, category) {
 //            @Override
@@ -53,7 +52,6 @@ public class ListProduct extends AppCompatActivity {
 //            }
 //        };
 //    }
-=======
     private void loadCategory() {
         FirebaseRecyclerAdapter<Category, CategoryViewHolder> adapter = new FirebaseRecyclerAdapter<Category, CategoryViewHolder>(Category.class, R.layout.item_category, CategoryViewHolder.class, table_category) {
             @Override
@@ -73,5 +71,4 @@ public class ListProduct extends AppCompatActivity {
         };
         recyclerViewCategory.setAdapter(adapter);
     }
->>>>>>> Stashed changes
 }
