@@ -1,28 +1,30 @@
 package com.example.holaorder;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Debug;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
+
 import com.example.holaorder.Common.Common;
 import com.example.holaorder.Model.User;
-import com.google.firebase.database.*;
-import org.jetbrains.annotations.NotNull;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
 public class SignIn extends AppCompatActivity {
     EditText edtUsername, edtPassword;
     Button btnSignIn;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,44 +37,51 @@ public class SignIn extends AppCompatActivity {
 
         // Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference table_user = database.getReference("User");
+        Query userQuery = database.getReference("User").orderByChild("phone");
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String password = edtPassword.getText().toString().trim();
+                if (password.isEmpty()) {
+                    Toast.makeText(SignIn.this, "Please enter a password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 ProgressDialog mDialog = new ProgressDialog(SignIn.this);
-                mDialog.setMessage("Please waiting...");
+                mDialog.setMessage("Please wait...");
                 mDialog.show();
 
-                table_user.addListenerForSingleValueEvent(new ValueEventListener() {
+                userQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
                         mDialog.dismiss();
-                        for (DataSnapshot userSnapshot : snapshot.getChildren()) {
-                            String phoneNumber = userSnapshot.getKey();
-                            if(phoneNumber == null){
-                                mDialog.dismiss();
-                                Toast.makeText(SignIn.this, "User does not have in database!", Toast.LENGTH_SHORT).show();
-                            }
-                            String name = userSnapshot.child("Name").getValue(String.class);
-                            String password = userSnapshot.child("Password").getValue(String.class);
-                            User user = new User(name, password, phoneNumber);
-                            Log.d("MyApp", "User: " + phoneNumber + ", Name: " + name + ", Password: " + password);
+                        boolean isSignInSuccessful = false;
 
-                            if (Objects.equals(user.getPassword(), edtPassword.getText().toString())) {
-                                Toast.makeText(SignIn.this, "Sign in successfully!", Toast.LENGTH_SHORT).show();
-                                Intent homeIntent = new Intent(SignIn.this, Home.class);
+                        for (DataSnapshot userSnapshot : snapshot.getChildren()) {
+                            User user = userSnapshot.getValue(User.class);
+                            if (user != null && Objects.equals(user.getPassword(), password)) {
+                                isSignInSuccessful = true;
                                 Common.currentUser = user;
-                                startActivity(homeIntent);
-                                finish();
-                            } else {
-                                Toast.makeText(SignIn.this, "Sign in failed!", Toast.LENGTH_SHORT).show();
+                                break;
                             }
                         }
+
+                        if (isSignInSuccessful) {
+                            Toast.makeText(SignIn.this, "Sign in successfully!", Toast.LENGTH_SHORT).show();
+                            Intent homeIntent = new Intent(SignIn.this, Home.class);
+                            startActivity(homeIntent);
+                            finish();
+                        } else {
+                            Toast.makeText(SignIn.this, "Sign in failed!", Toast.LENGTH_SHORT).show();
+                        }
                     }
+
                     @Override
-                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
-                        // Handle onCancelled event
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        mDialog.dismiss();
+                        Log.d("SignIn", "onCancelled: " + error.getMessage());
+                        Toast.makeText(SignIn.this, "Failed to sign in", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
