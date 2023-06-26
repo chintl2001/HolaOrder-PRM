@@ -1,6 +1,7 @@
 package com.example.holaorder;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,53 +24,80 @@ import com.google.firebase.database.ValueEventListener;
 
 public class SignUp extends AppCompatActivity {
     private EditText etName, etPhone, etPassword;
-    private Button btnRegister;
+    private Button btnRegister, btnLoginNow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
 
-        etName = findViewById(R.id.edt_userName);
+        etName = findViewById(R.id.edt_Name);
         etPhone = findViewById(R.id.edt_phone);
-        etPassword = findViewById(R.id.edt_password);
+        etPassword = findViewById(R.id.edt_Password);
         btnRegister = findViewById(R.id.btn_signUp);
+        btnLoginNow = findViewById(R.id.btn_loginNow);
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference data_User = database.getReference("User");
 
+
+        btnLoginNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent loginNow = new Intent(SignUp.this, SignIn.class);
+                startActivity(loginNow);
+            }
+        });
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final ProgressDialog mDialog = new ProgressDialog(SignUp.this);
-                mDialog.setMessage("Please waiting...");
+                mDialog.setMessage("Please wait...");
                 mDialog.show();
 
-                data_User.addValueEventListener(new ValueEventListener() {
+                final String name = etName.getText().toString();
+                final String phone = etPhone.getText().toString();
+                final String password = etPassword.getText().toString();
+
+                data_User.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.child(etPhone.getText().toString()).exists())
-                        {
+                        if (snapshot.child(phone).exists()) {
                             mDialog.dismiss();
-                            Toast.makeText(SignUp.this, "Phone Number already register",
+                            Toast.makeText(SignUp.this, "Phone Number already registered",
                                     Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            mDialog.dismiss();
-                            User user = new User(etName.getText().toString(),
-                                    etPassword.getText().toString());
-                            data_User.child(etPhone.getText().toString()).setValue(user);
-                            Toast.makeText(SignUp.this, "Sign up succcessfully!",
-                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            User user = new User(name, password);
+                            data_User.child(phone).setValue(user)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                mDialog.dismiss();
+                                                Toast.makeText(SignUp.this, "Sign up successfully!",
+                                                        Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(SignUp.this, SignIn.class);
+                                                startActivity(intent);
+                                                finish();
+                                            } else {
+                                                mDialog.dismiss();
+                                                Toast.makeText(SignUp.this, "Sign up failed.",
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
                         }
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
+                        mDialog.dismiss();
+                        Toast.makeText(SignUp.this, "Error: " + error.getMessage(),
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
             }
         });
     }
 }
+

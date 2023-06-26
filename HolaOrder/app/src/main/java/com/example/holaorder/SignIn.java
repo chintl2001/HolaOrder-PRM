@@ -67,6 +67,9 @@ public class SignIn extends AppCompatActivity {
                                 finish();
                             } else {
                                 Toast.makeText(SignIn.this, "Sign in failed!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(SignIn.this, SignIn.class);
+                                startActivity(intent);
+                                finish();
                             }
                         }
                     }
