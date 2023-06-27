@@ -81,7 +81,7 @@ public class ListProduct extends AppCompatActivity {
         recyclerViewCategory.setAdapter(adapter);
     }
     private void loadProduct() {
-        FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class, R.layout.item_product, FoodViewHolder.class, table_product) {
+        FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class, R.layout.viewholder_popular, FoodViewHolder.class, table_product) {
             @Override
             protected void populateViewHolder(FoodViewHolder foodViewHolder, Food food, int i) {
                 foodViewHolder.tvFoodName.setText(food.getName());

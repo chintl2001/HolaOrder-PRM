@@ -1,6 +1,7 @@
 package com.example.holaorder;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.holaorder.Adapter.CategoryAdapter;
@@ -20,12 +22,23 @@ import com.example.holaorder.Common.Common;
 
 import com.example.holaorder.Domain.CategoryDomain;
 import com.example.holaorder.Domain.FoodDomain;
+import com.example.holaorder.Interface.ItemClickListener;
+import com.example.holaorder.Model.Category;
+import com.example.holaorder.Model.Food;
+import com.example.holaorder.ViewHolder.CategoryViewHolder;
+import com.example.holaorder.ViewHolder.FoodViewHolder;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class Home extends AppCompatActivity {
+
+
+    DatabaseReference table_category;
+    DatabaseReference table_product;
     TextView textItem;
     private RecyclerView.Adapter adapter, adapter2 ;
     private RecyclerView recyclerViewCaregoryList, recyclerViewPopularList;
@@ -35,7 +48,8 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference table_category = database.getReference("Category");
+        table_category = database.getReference("Category");
+        table_product = database.getReference("Food");
         DatabaseReference table_product = database.getReference("Product");
 
         ((TextView) findViewById(R.id.textHello)).setText("Hello, " + Common.currentUser.getUsername());
@@ -60,7 +74,7 @@ public class Home extends AppCompatActivity {
         recyclerViewCaregoryList=findViewById(R.id.recyclerView);
         recyclerViewCaregoryList.setLayoutManager(linearLayoutManager);
 
-        ArrayList<CategoryDomain> category = new ArrayList<CategoryDomain>();
+        /*ArrayList<CategoryDomain> category = new ArrayList<CategoryDomain>();
         category.add(new CategoryDomain("Pizza","cat_1"));
         category.add(new CategoryDomain("Burger","cat_2"));
         category.add(new CategoryDomain("Hotdog","cat_3"));
@@ -68,6 +82,25 @@ public class Home extends AppCompatActivity {
         category.add(new CategoryDomain("Donut","cat_5"));
 
         adapter = new CategoryAdapter(category);
+        recyclerViewCaregoryList.setAdapter(adapter);*/
+
+        FirebaseRecyclerAdapter<Category, CategoryViewHolder> adapter = new FirebaseRecyclerAdapter<Category, CategoryViewHolder>(Category.class, R.layout.viewholder_category, CategoryViewHolder.class, table_category) {
+            @Override
+            protected void populateViewHolder(CategoryViewHolder categoryViewHolder, Category category, int i) {
+                categoryViewHolder.tvCategoryName.setText(category.getName());
+                Picasso.get().load(category.getImage()).into(categoryViewHolder.imgCategory);
+                Category clickItem = category;
+                Log.d("Food", category.toString());
+                categoryViewHolder.setItemClickListener(new ItemClickListener() {
+                    @Override
+                    public void onClick(View view, int position, boolean isLongClick) {
+                        Toast.makeText(Home.this, clickItem.getName(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+            }
+        };
         recyclerViewCaregoryList.setAdapter(adapter);
     }
 
@@ -83,6 +116,26 @@ public class Home extends AppCompatActivity {
 
         adapter2 = new PopularAdapter(foodList);
         recyclerViewPopularList.setAdapter(adapter2);
+        /*FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class, R.layout.viewholder_popular, FoodViewHolder.class, table_product) {
+            @Override
+            protected void populateViewHolder(FoodViewHolder foodViewHolder, Food food, int i) {
+                foodViewHolder.tvFoodName.setText(food.getName());
+                Picasso.get().load(food.getImage()).into(foodViewHolder.imgFood);
+                foodViewHolder.tvPrice.setText(food.getPrice());
+                foodViewHolder.rate.setRating(Float.parseFloat(food.getRate()));
+
+                Food clickItem = food;
+                Log.d("Food", food.toString());
+
+                foodViewHolder.setItemClickListener(new ItemClickListener() {
+                    @Override
+                    public void onClick(View view, int position, boolean isLongClick) {
+                        Toast.makeText(Home.this, clickItem.getName(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+                }
+            };
+        recyclerViewPopularList.setAdapter(adapter);*/
 
     }
 

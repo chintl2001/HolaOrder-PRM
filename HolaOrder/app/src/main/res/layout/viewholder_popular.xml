@@ -72,7 +72,21 @@
         android:textColor="#ffffff"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ratingBar1"
+        app:layout_constraintStart_toStartOf="@+id/ratingBar1"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar1"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <RatingBar
+        android:id="@+id/ratingBar1"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:numStars="5"
+        android:rating="3"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
         app:layout_constraintEnd_toEndOf="@+id/pic"
         app:layout_constraintStart_toStartOf="@+id/pic"
-        app:layout_constraintTop_toBottomOf="@+id/fee" />
+        app:layout_constraintTop_toBottomOf="@+id/fee"
+        app:layout_wrapBehaviorInParent="skipped" />
 </androidx.constraintlayout.widget.ConstraintLayout>
