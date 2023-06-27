@@ -5,8 +5,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ListProduct">
-
+        tools:context=".ListProduct"
+        android:background="#FFFFFF">
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -19,31 +19,32 @@
                 android:text=""
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:padding="8dp" android:id="@+id/tvHelloUser"/>
+                android:padding="8dp"
+                android:id="@+id/tvHelloUser"
+                android:textColor="@color/black"/>
         <SearchView
                 android:id="@+id/searchView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:queryHint="Search food" />
+                android:queryHint="Search food" android:background="#E8E8E8"/>
 
         <!-- Các biểu tượng danh mục -->
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/categoryRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="106dp"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_category" />
-
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:listitem="@layout/viewholder_category"
+        />
         <!-- Danh sách sản phẩm thức ăn -->
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/productRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2"
                 tools:listitem="@layout/item_product"/>
-
 
     </LinearLayout>
 

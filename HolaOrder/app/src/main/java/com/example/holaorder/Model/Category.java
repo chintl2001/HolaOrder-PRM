@@ -1,49 +1,40 @@
 package com.example.holaorder.Model;
 
 public class Category {
-    private String id;
-    private String name;
-    private String image;
+    private String Name;
+    private String Image;
 
     public Category() {
     }
 
-    public Category(String id, String name, String image) {
-        this.id = id;
-        this.name = name;
-        this.image = image;
+    public Category(String name, String image) {
+        Name = name;
+        Image = image;
     }
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.Name = name;
     }
 
     public String getImage() {
-        return image;
+        return Image;
     }
 
     public void setImage(String image) {
-        this.image = image;
+        Image = image;
     }
 
     @Override
     public String toString() {
         return "Category{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", image='" + image + '\'' +
+                ", name='" + Name + '\'' +
+                ", Image='" + Image + '\'' +
                 '}';
     }
 }

@@ -1,90 +1,93 @@
 package com.example.holaorder.Model;
 
 public class Food {
-    private String id;
-    private String name;
-    private String image;
-    private String categoryId;
-    private String description;
-    private String discount;
-    private String price;
-    private float rate;
+    private String Name;
+    private String Image;
+    private String CategoryId;
+    private String Description;
+    private String Discount;
+    private String Price;
+    private String Rate;
 
     public Food() {
     }
 
-    public Food(String id, String name, String image, String categoryId, String description, String discount, String price, float rate) {
-        this.id = id;
-        this.name = name;
-        this.image = image;
-        this.categoryId = categoryId;
-        this.description = description;
-        this.discount = discount;
-        this.price = price;
-        this.rate = rate;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public Food(String name, String image, String categoryId, String description, String discount, String price, String rate) {
+        Name = name;
+        Image = image;
+        CategoryId = categoryId;
+        Description = description;
+        Discount = discount;
+        Price = price;
+        Rate = rate;
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        Name = name;
     }
 
     public String getImage() {
-        return image;
+        return Image;
     }
 
     public void setImage(String image) {
-        this.image = image;
+        Image = image;
     }
 
     public String getCategoryId() {
-        return categoryId;
+        return CategoryId;
     }
 
     public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
+        CategoryId = categoryId;
     }
 
     public String getDescription() {
-        return description;
+        return Description;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        Description = description;
     }
 
     public String getDiscount() {
-        return discount;
+        return Discount;
     }
 
     public void setDiscount(String discount) {
-        this.discount = discount;
+        Discount = discount;
     }
 
     public String getPrice() {
-        return price;
+        return Price;
     }
 
     public void setPrice(String price) {
-        this.price = price;
+        Price = price;
     }
 
-    public float getRate() {
-        return rate;
+    public String getRate() {
+        return Rate;
     }
 
-    public void setRate(float rate) {
-        this.rate = rate;
+    public void setRate(String rate) {
+        Rate = rate;
+    }
+
+    @Override
+    public String toString() {
+        return "Food{" +
+                ", Name='" + Name + '\'' +
+                ", Image='" + Image + '\'' +
+                ", CategoryId='" + CategoryId + '\'' +
+                ", Description='" + Description + '\'' +
+                ", Discount='" + Discount + '\'' +
+                ", Price='" + Price + '\'' +
+                ", Rate=" + Rate +
+                '}';
     }
 }

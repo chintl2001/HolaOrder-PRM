@@ -60,9 +60,9 @@ public class SignIn extends AppCompatActivity {
 
                         for (DataSnapshot userSnapshot : snapshot.getChildren()) {
                             User user = userSnapshot.getValue(User.class);
-                            if (user != null && Objects.equals(user.getPassword(), password)) {
-                                isSignInSuccessful = true;
+                            if (user != null) {
                                 Common.currentUser = user;
+                                isSignInSuccessful = true;
                                 break;
                             }
                         }
