@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Debug;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,7 +38,7 @@ public class ListProduct extends AppCompatActivity {
         // Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
          table_category = database.getReference("Category");
-         table_product = database.getReference("Food");
+         table_product = database.getReference("Foods");
         //set current user
         ((TextView) findViewById(R.id.tvHelloUser)).setText("Hello, " + Common.currentUser.getUsername());
         //load category
@@ -58,7 +59,7 @@ public class ListProduct extends AppCompatActivity {
 
     }
     private void loadCategory() {
-        FirebaseRecyclerAdapter<Category, CategoryViewHolder> adapter = new FirebaseRecyclerAdapter<Category, CategoryViewHolder>(Category.class, R.layout.item_category, CategoryViewHolder.class, table_category) {
+        FirebaseRecyclerAdapter<Category, CategoryViewHolder> adapter = new FirebaseRecyclerAdapter<Category, CategoryViewHolder>(Category.class, R.layout.viewholder_category, CategoryViewHolder.class, table_category) {
             @Override
             protected void populateViewHolder(CategoryViewHolder categoryViewHolder, Category category, int i) {
                 categoryViewHolder.tvCategoryName.setText(category.getName());
@@ -84,7 +85,7 @@ public class ListProduct extends AppCompatActivity {
                 foodViewHolder.tvFoodName.setText(food.getName());
                 Picasso.get().load(food.getImage()).into(foodViewHolder.imgFood);
                 foodViewHolder.tvPrice.setText(food.getPrice());
-                foodViewHolder.rate.setRating(food.getRate());
+                foodViewHolder.rate.setRating(Float.parseFloat(food.getRate()));
                 Food clickItem = food;
                 Log.d("Food", food.toString());
 
