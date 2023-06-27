@@ -44,7 +44,8 @@ public class ListProduct extends AppCompatActivity {
         //load category
         recyclerViewCategory = (RecyclerView) findViewById(R.id.categoryRecyclerView);
         recyclerViewCategory.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
+        //layoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false);
         recyclerViewCategory.setLayoutManager(layoutManager);
         //load product
         recyclerViewProduct = (RecyclerView) findViewById(R.id.productRecyclerView);
@@ -59,6 +60,7 @@ public class ListProduct extends AppCompatActivity {
 
     }
     private void loadCategory() {
+
         FirebaseRecyclerAdapter<Category, CategoryViewHolder> adapter = new FirebaseRecyclerAdapter<Category, CategoryViewHolder>(Category.class, R.layout.viewholder_category, CategoryViewHolder.class, table_category) {
             @Override
             protected void populateViewHolder(CategoryViewHolder categoryViewHolder, Category category, int i) {
