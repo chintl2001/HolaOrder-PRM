@@ -1,13 +1,15 @@
 package com.example.holaorder;
 
+import android.content.Intent;
+import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import com.example.holaorder.Adaptor.CategoryAdaptor;
-import com.example.holaorder.Adaptor.PopularAdaptor;
+import com.example.holaorder.Adapter.CategoryAdapter;
+import com.example.holaorder.Adapter.PopularAdapter;
 import com.example.holaorder.Domain.CategoryDomain;
 import com.example.holaorder.Domain.FoodDomain;
 
@@ -38,7 +40,7 @@ public class Home extends AppCompatActivity {
         category.add(new CategoryDomain("Drink","cat_4"));
         category.add(new CategoryDomain("Donut","cat_5"));
 
-        adapter = new CategoryAdaptor(category);
+        adapter = new CategoryAdapter(category);
         recyclerViewCaregoryList.setAdapter(adapter);
     }
 
@@ -52,8 +54,14 @@ public class Home extends AppCompatActivity {
         foodList.add(new FoodDomain("Cheese Burger", "burger", "beef, cheese, sauce, tomato",8.79));
         foodList.add(new FoodDomain("Vegetable pizza", "pizza2", "olive oil, vegetable oil, cherry tomatoes, basil",8.5));
 
-        adapter2 = new PopularAdaptor(foodList);
+        adapter2 = new PopularAdapter(foodList);
         recyclerViewPopularList.setAdapter(adapter2);
+
+    }
+
+    public void viewAllProducts(View view) {
+        Intent productListIntent = new Intent(Home.this, ListProduct.class);
+        startActivity(productListIntent);
 
     }
 }

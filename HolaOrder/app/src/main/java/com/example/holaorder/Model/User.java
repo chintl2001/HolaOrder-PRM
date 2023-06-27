@@ -7,16 +7,14 @@ public class User {
 
     public User() {
     }
-
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
     public User(String name, String password, String phone) {
         this.name = name;
         this.password = password;
         this.phone = phone;
-    }
-
-    public User(String name, String password) {
-        this.name = name;
-        this.password = password;
     }
 
     public String getUsername() {
