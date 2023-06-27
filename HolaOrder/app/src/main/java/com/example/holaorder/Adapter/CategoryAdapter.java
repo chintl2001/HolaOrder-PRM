@@ -1,4 +1,4 @@
-package com.example.holaorder.Adaptor;
+package com.example.holaorder.Adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,10 +18,10 @@ import com.example.holaorder.R;
 
 import java.util.ArrayList;
 
-public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.ViewHolder> {
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
     ArrayList<CategoryDomain>categoryDomains;
 
-    public CategoryAdaptor(ArrayList<CategoryDomain> categoryDomains) {
+    public CategoryAdapter(ArrayList<CategoryDomain> categoryDomains) {
         this.categoryDomains = categoryDomains;
     }
 

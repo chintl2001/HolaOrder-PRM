@@ -1,4 +1,4 @@
-package com.example.holaorder.Adaptor;
+package com.example.holaorder.Adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,10 +16,10 @@ import com.example.holaorder.R;
 
 import java.util.ArrayList;
 
-public class PopularAdaptor extends RecyclerView.Adapter<PopularAdaptor.ViewHolder> {
+public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHolder> {
     ArrayList<FoodDomain> popularFood;
 
-    public PopularAdaptor(ArrayList<FoodDomain> popularFood) {
+    public PopularAdapter(ArrayList<FoodDomain> popularFood) {
         this.popularFood = popularFood;
     }
 
