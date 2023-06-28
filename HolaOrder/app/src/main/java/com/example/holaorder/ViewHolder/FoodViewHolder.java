@@ -1,6 +1,7 @@
 package com.example.holaorder.ViewHolder;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -15,14 +16,16 @@ public class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     public TextView tvPrice;
     public ImageView imgFood;
     public RatingBar rate;
+    public Button btn;
     private ItemClickListener itemClickListener;
 
     public FoodViewHolder(@NonNull @NotNull View itemView) {
         super(itemView);
-        tvFoodName = ((TextView)itemView.findViewById(R.id.productName) );
-        tvPrice = ((TextView)itemView.findViewById(R.id.price) );
-        imgFood = ((ImageView) itemView.findViewById(R.id.productImage));
-        rate = ((RatingBar) itemView.findViewById(R.id.ratingBar));
+        tvFoodName = itemView.findViewById(R.id.title);
+        tvPrice = itemView.findViewById(R.id.fee);
+        imgFood = itemView.findViewById(R.id.pic);
+        rate = itemView.findViewById(R.id.ratingBar1);
+        btn= itemView.findViewById(R.id.addBtn);
         itemView.setOnClickListener(this);
     }
     public void setItemClickListener(ItemClickListener itemClickListener) {
