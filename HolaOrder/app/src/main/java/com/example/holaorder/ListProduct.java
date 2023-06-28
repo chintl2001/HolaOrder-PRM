@@ -24,9 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 public class ListProduct extends AppCompatActivity {
-    TextView txtFullname;
     RecyclerView recyclerViewCategory, recyclerViewProduct;
-    RecyclerView.LayoutManager layoutManager;
     DatabaseReference table_category;
     DatabaseReference table_product;
     @SuppressLint("SetTextI18n")

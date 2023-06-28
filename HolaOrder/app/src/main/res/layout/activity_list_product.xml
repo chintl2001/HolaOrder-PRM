@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ListProduct"
-        android:background="#FFFFFF">
+        android:background="@drawable/background_gradient">
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -16,17 +16,24 @@
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="18sp"
+                android:text="Hello"
+                android:textSize="24sp"
                 android:textStyle="bold"
-                android:padding="8dp"
+                android:padding="10dp"
+                android:paddingTop="10dp"
+                android:layout_margin="10dp"
                 android:id="@+id/tvHelloUser"
                 android:textColor="@color/black"/>
-        <SearchView
+        <EditText
                 android:id="@+id/searchView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:queryHint="Search food" android:background="#E8E8E8"/>
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:hint="What food you want to eat today?"
+                android:background="@drawable/cart_background"
+                android:padding="10dp"
+                android:backgroundTint="#E8E8E8" android:textColorHint="#B1B1B1"/>
 
         <!-- Các biểu tượng danh mục -->
         <androidx.recyclerview.widget.RecyclerView
@@ -43,8 +50,8 @@
                 android:id="@+id/productRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="5dp"
-                android:layout_marginLeft="30dp"
+                android:padding="10dp"
+                android:layout_marginLeft="2dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2"
                 tools:listitem="@layout/viewholder_popular"/>
