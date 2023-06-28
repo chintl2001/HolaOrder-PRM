@@ -50,7 +50,7 @@ public class ListProduct extends AppCompatActivity {
         //load product
         recyclerViewProduct = (RecyclerView) findViewById(R.id.productRecyclerView);
         recyclerViewProduct.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
+        layoutManager = new LinearLayoutManager(this,  LinearLayoutManager.HORIZONTAL,false);
         recyclerViewProduct.setLayoutManager(layoutManager);
 
 
