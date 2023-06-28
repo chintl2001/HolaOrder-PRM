@@ -42,12 +42,13 @@
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/productRecyclerView"
                 android:layout_width="match_parent"
-                android:padding="5dp"
-                android:paddingLeft="20dp"
                 android:layout_height="match_parent"
+                android:padding="5dp"
+                android:layout_marginLeft="30dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2"
                 tools:listitem="@layout/viewholder_popular"/>
+
 
     </LinearLayout>
 

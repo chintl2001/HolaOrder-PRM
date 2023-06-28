@@ -49,7 +49,7 @@ public class SignIn extends AppCompatActivity {
                 }
 
                 ProgressDialog mDialog = new ProgressDialog(SignIn.this);
-                mDialog.setMessage("Please wait...");
+                mDialog.setMessage("Please wait ...");
                 mDialog.show();
 
                 userQuery.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -62,6 +62,7 @@ public class SignIn extends AppCompatActivity {
                             User user = userSnapshot.getValue(User.class);
                             if (user != null) {
                                 Common.currentUser = user;
+                                Log.d("My App", user.toString());
                                 isSignInSuccessful = true;
                                 break;
                             }
