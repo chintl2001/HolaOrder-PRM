@@ -1,43 +1,52 @@
 package com.example.holaorder.Model;
 
 public class User {
-    private String name;
-    private String password;
-    private String phone;
+    private String Name;
+    private String Password;
+    private String Phone;
 
     public User() {
     }
-    public User(String name, String password) {
-        this.name = name;
-        this.password = password;
-    }
+
     public User(String name, String password, String phone) {
-        this.name = name;
-        this.password = password;
-        this.phone = phone;
+        Name = name;
+        Password = password;
+        Phone = phone;
+    }
+    public User(String name, String password) {
+        Name = name;
+        Password = password;
+    }
+    public String getName() {
+        return Name;
     }
 
-    public String getUsername() {
-        return name;
-    }
-
-    public void setUsername(String name) {
-        this.name = name;
+    public void setName(String name) {
+        Name = name;
     }
 
     public String getPassword() {
-        return password;
+        return Password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        Password = password;
+    }
+
+    public String getPhone() {
+        return Phone;
+    }
+
+    public void setPhone(String phone) {
+        Phone = phone;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
-                ", password='" + password + '\'' +
+                "Name='" + Name + '\'' +
+                ", Password='" + Password + '\'' +
+                ", Phone='" + Phone + '\'' +
                 '}';
     }
 }
