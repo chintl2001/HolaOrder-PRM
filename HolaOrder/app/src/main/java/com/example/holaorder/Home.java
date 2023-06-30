@@ -1,5 +1,6 @@
 package com.example.holaorder;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
@@ -42,6 +43,7 @@ public class Home extends AppCompatActivity {
     TextView textItem;
     private RecyclerView.Adapter adapter, adapter2 ;
     private RecyclerView recyclerViewCaregoryList, recyclerViewPopularList;
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +54,7 @@ public class Home extends AppCompatActivity {
         table_product = database.getReference("Food");
         DatabaseReference table_product = database.getReference("Product");
 
-        ((TextView) findViewById(R.id.textHello)).setText("Hello, " + Common.currentUser.getUsername());
+        ((TextView) findViewById(R.id.textHello)).setText("Hello, " + Common.currentUser.getName());
         recyclerViewCaregory();
         recyclerViewPopular();
 

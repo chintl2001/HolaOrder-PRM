@@ -25,7 +25,7 @@ public class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         tvPrice = itemView.findViewById(R.id.fee);
         imgFood = itemView.findViewById(R.id.pic);
         rate = itemView.findViewById(R.id.ratingBar1);
-        btn= itemView.findViewById(R.id.addBtn);
+//        btn= itemView.findViewById(R.id.addBtn);
         itemView.setOnClickListener(this);
     }
     public void setItemClickListener(ItemClickListener itemClickListener) {

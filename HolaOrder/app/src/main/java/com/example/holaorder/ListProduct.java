@@ -24,9 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 public class ListProduct extends AppCompatActivity {
-    TextView txtFullname;
     RecyclerView recyclerViewCategory, recyclerViewProduct;
-    RecyclerView.LayoutManager layoutManager;
     DatabaseReference table_category;
     DatabaseReference table_product;
     @SuppressLint("SetTextI18n")
@@ -40,7 +38,7 @@ public class ListProduct extends AppCompatActivity {
          table_category = database.getReference("Category");
          table_product = database.getReference("Foods");
         //set current user
-        ((TextView) findViewById(R.id.tvHelloUser)).setText("Hello, " + Common.currentUser.getUsername());
+        ((TextView) findViewById(R.id.tvHelloUser)).setText("Hello, " + Common.currentUser.getName());
         //load category
         recyclerViewCategory = (RecyclerView) findViewById(R.id.categoryRecyclerView);
         recyclerViewCategory.setHasFixedSize(true);
@@ -49,10 +47,9 @@ public class ListProduct extends AppCompatActivity {
         recyclerViewCategory.setLayoutManager(layoutManager);
         //load product
         recyclerViewProduct = (RecyclerView) findViewById(R.id.productRecyclerView);
-        recyclerViewProduct.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerViewProduct.setLayoutManager(layoutManager);
-
+        GridLayoutManager layoutManagerGrid = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        recyclerViewProduct.setLayoutManager(layoutManagerGrid);
+       ((TextView) findViewById(R.id.tvHelloUser)).setText(Common.currentUser.getName());
 
         loadCategory();
         loadProduct();
