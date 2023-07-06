@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:orientation="vertical"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/btnAddToCart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:src="@drawable/food_combo"
+                android:scaleType="fitCenter"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutInfor"
+                android:layout_width="411dp"
+                android:layout_height="327dp"
+                android:padding="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image">
+
+                <TextView
+                    android:id="@+id/txtFoodName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:fontFamily="@font/google_sans_bold"
+                    android:maxWidth="250dp"
+                    android:text="Full Meal Combo"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <RelativeLayout
+                    android:id="@+id/layoutStar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtFoodName"
+
+                    >
+
+                    <TextView
+                        android:id="@+id/txtStar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:drawableStart="@drawable/icon_star"
+                        android:drawablePadding="2dp"
+                        android:text="5.0"
+                        android:textColor="#000000"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_toRightOf="@id/txtStar"
+                        android:drawableStart="@drawable/icon_location"
+                        android:drawablePadding="2dp"
+                        android:text="1.5Miles"
+                        android:textColor="#000000"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/radius_view"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/btnMinus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:background="@drawable/icon_minus"
+
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:background="@drawable/indicator_text"
+                            android:textColor="#000000"
+                            android:paddingStart="6dp"
+                            android:paddingEnd="6dp"
+                            android:text="1" />
+
+                        <ImageView
+                            android:id="@+id/btnAdd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="12dp"
+                            android:background="@drawable/icon_add" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/google_sans_bold"
+                    android:text="$3.08"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layoutStar" />
+
+                <TextView
+                    android:id="@+id/txtDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:maxWidth="300dp"
+                    android:text="Loren ipsum dolot sit amet, consecteture adpiescing elit"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/price" />
+
+                <LinearLayout
+                    android:id="@+id/btnAddToCart"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/radius_view"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtDescription"
+                    app:layout_constraintVertical_bias="1.0"
+                    tools:layout_editor_absoluteX="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/google_sans_bold"
+                        android:text="Add to Cart"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/icon_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="12dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
