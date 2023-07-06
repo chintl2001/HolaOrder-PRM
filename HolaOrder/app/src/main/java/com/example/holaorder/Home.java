@@ -61,7 +61,7 @@ public class Home extends AppCompatActivity {
         table_product = database.getReference("Food");
         DatabaseReference table_product = database.getReference("Product");
 
-        ((TextView) findViewById(R.id.textHello)).setText("Hello, " + Prevalent.currentOnlineUser.getPhone());
+        ((TextView) findViewById(R.id.textHello)).setText("Hello, " + Common.currentUser.getName());
         recyclerViewCaregory();
         recyclerViewPopular();
 
