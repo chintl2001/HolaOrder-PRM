@@ -24,8 +24,6 @@
                     android:value=""/>
         </activity>
         <activity
-                android:name=".Home"
-                android:exported="false">
             android:name=".CartActivity"
             android:exported="false">
             <meta-data
