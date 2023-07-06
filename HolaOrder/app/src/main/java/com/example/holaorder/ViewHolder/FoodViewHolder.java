@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.holaorder.Interface.ItemClickListener;
+import com.example.holaorder.ListProduct;
 import com.example.holaorder.R;
 import org.jetbrains.annotations.NotNull;
 
@@ -25,7 +26,7 @@ public class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         tvPrice = itemView.findViewById(R.id.fee);
         imgFood = itemView.findViewById(R.id.pic);
         rate = itemView.findViewById(R.id.ratingBar1);
-//        btn= itemView.findViewById(R.id.addBtn);
+        btn= itemView.findViewById(R.id.addBtn);
         itemView.setOnClickListener(this);
     }
     public void setItemClickListener(ItemClickListener itemClickListener) {

@@ -14,17 +14,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.holaorder.Common.Common;
 import com.example.holaorder.Model.User;
+import com.example.holaorder.Prevalent.Prevalent;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.rey.material.widget.CheckBox;
 
-import java.util.Objects;
+import io.paperdb.Paper;
 
 public class SignIn extends AppCompatActivity {
     EditText edtUsername, edtPassword;
     Button btnSignIn;
+    CheckBox checkBoxRemember;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,30 @@ public class SignIn extends AppCompatActivity {
         edtUsername = findViewById(R.id.edtUsername);
         edtPassword = findViewById(R.id.edtPassword);
         btnSignIn = findViewById(R.id.btn_signin);
+        checkBoxRemember = findViewById(R.id.remember_me_chkb);
+        Paper.init(this);
 
+        //Lưu tài khoản đăng nhập
+        String savedPhone = Paper.book().read(Prevalent.UserPhoneKey);
+        String savedPassword = Paper.book().read(Prevalent.UserPasswordKey);
+
+        if (savedPhone != null && savedPassword != null) {
+            // Thông tin đăng nhập đã được lưu
+            // Hiển thị thông báo hoặc thực hiện các hành động tương ứng
+            edtUsername.setText(savedPhone);
+            edtPassword.setText(savedPassword);
+            checkBoxRemember.setChecked(true);
+            Toast.makeText(this, "Đã lưu thông tin của bạn", Toast.LENGTH_SHORT).show();
+           //Lưu thông tin
+            User user = new User();
+            user.setPhone(savedPhone);
+            user.setPassword(savedPassword);
+            Prevalent.currentOnlineUser = user;
+
+        } else {
+            // Thông tin đăng nhập chưa được lưu
+            Toast.makeText(this, "Chưa lưu thông tin của bạn", Toast.LENGTH_SHORT).show();
+        }
         // Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         Query userQuery = database.getReference("User").orderByChild("phone");
@@ -70,6 +96,12 @@ public class SignIn extends AppCompatActivity {
 
                         if (isSignInSuccessful) {
                             Toast.makeText(SignIn.this, "Sign in successfully!", Toast.LENGTH_SHORT).show();
+                            if (checkBoxRemember.isChecked()) {
+                                String phone = edtUsername.getText().toString().trim();
+                                // Lưu thông tin phone và password bằng Paper
+                                Paper.book().write(Prevalent.UserPhoneKey, phone);
+                                Paper.book().write(Prevalent.UserPasswordKey, password);
+                            }
                             Intent homeIntent = new Intent(SignIn.this, Home.class);
                             startActivity(homeIntent);
                             finish();

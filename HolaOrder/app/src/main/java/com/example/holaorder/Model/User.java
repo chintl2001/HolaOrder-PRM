@@ -4,15 +4,20 @@ public class User {
     private String Name;
     private String Password;
     private String Phone;
+    private String Image;
+    private String Email;
 
     public User() {
     }
 
-    public User(String name, String password, String phone) {
+    public User(String name, String password, String phone, String image, String email) {
         Name = name;
         Password = password;
         Phone = phone;
+        Image = image;
+        Email = email;
     }
+
     public User(String name, String password) {
         Name = name;
         Password = password;
@@ -39,6 +44,22 @@ public class User {
 
     public void setPhone(String phone) {
         Phone = phone;
+    }
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        Image = image;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
     }
 
     @Override

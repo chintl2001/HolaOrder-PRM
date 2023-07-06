@@ -15,8 +15,21 @@
             android:theme="@style/Theme.Design.NoActionBar"
             tools:targetApi="31">
         <activity
+                android:name=".GoogleLogin"
+                android:exported="false">
+            <meta-data
+                    android:name="android.app.lib_name"
+                    android:value=""/>
+        </activity>
+        <activity
+                android:name=".ui.login.LoginGoogleActivity"
+                android:exported="false"
+                android:label="@string/title_activity_login_google"/>
+        <activity
                 android:name=".Home"
                 android:exported="false">
+            android:name=".CartActivity"
+            android:exported="false">
             <meta-data
                     android:name="android.app.lib_name"
                     android:value=""/>
