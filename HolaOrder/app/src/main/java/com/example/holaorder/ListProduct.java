@@ -97,7 +97,7 @@ public class ListProduct extends AppCompatActivity {
         ((TextView) findViewById(R.id.tvHelloUser)).setText(Common.currentUser.getName());
 
         loadCategory();
-        loadProduct();
+        loadProduct("");
         NavSettup();
 
         ImageButton btn_cart = (ImageButton)  findViewById(R.id.cartViewButton);
@@ -152,6 +152,10 @@ public class ListProduct extends AppCompatActivity {
                 categoryViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
+                        // Lấy danh mục được click
+                        String selectedCategory = category.getName();
+                        // Gọi phương thức loadProduct() với danh mục đã chọn hoặc rỗng
+                        loadProduct(selectedCategory.isEmpty() ? "" : selectedCategory);
                         Toast.makeText(ListProduct.this, clickItem.getName(), Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -163,11 +167,19 @@ public class ListProduct extends AppCompatActivity {
 
 
     // bản khác
-    private void loadProduct() {
+    private void loadProduct(String category) {
+        Query query;
 
+        if (category.isEmpty()) {
+            // Hiển thị tất cả sản phẩm nếu không có danh mục được chọn
+            query = table_product;
+        } else {
+            // Hiển thị sản phẩm theo danh mục được chọn
+            query = table_product.orderByChild("CategoryId").equalTo(category);
+        }
         FirebaseRecyclerOptions<Food> options =
                 new FirebaseRecyclerOptions.Builder<Food>()
-                        .setQuery(table_product, Food.class)
+                        .setQuery(query, Food.class)
                         .build();
 
         FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
