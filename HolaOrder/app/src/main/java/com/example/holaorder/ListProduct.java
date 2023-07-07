@@ -6,6 +6,8 @@ import android.os.Debug;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -66,6 +68,8 @@ public class ListProduct extends AppCompatActivity {
     TextView txtFullName, txtEmail;
     ImageView imgUpload;
     DrawerLayout drawerLayout;
+    //Search
+    EditText searchView;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -105,6 +109,19 @@ public class ListProduct extends AppCompatActivity {
             }
         });
 
+        //ToDo:Search
+        searchView = findViewById(R.id.searchView);
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                // Intent sang Activity khác
+                Intent intent = new Intent(ListProduct.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
