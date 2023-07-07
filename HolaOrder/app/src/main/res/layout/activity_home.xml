@@ -61,7 +61,7 @@
                     tools:srcCompat="@tools:sample/avatars" />
 
                 <EditText
-                    android:id="@+id/editTextText"
+                    android:id="@+id/searchHome"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_marginStart="32dp"
@@ -71,11 +71,15 @@
                     android:drawableStart="@android:drawable/ic_menu_search"
                     android:drawablePadding="10dp"
                     android:ems="10"
+                    android:focusable="false"
+                    android:cursorVisible="false"
                     android:hint="What are you searching for?"
-                    android:inputType="text"
+                    android:inputType="none"
+                    android:textColorHint="@color/black"
                     android:paddingStart="20dp"
                     android:textSize="14sp"
                     android:textStyle="italic"
+                    android:clickable="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -91,7 +95,7 @@
                     android:background="@drawable/orange_light_banner"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextText">
+                    app:layout_constraintTop_toBottomOf="@+id/searchHome">
 
                     <TextView
                         android:id="@+id/textView4"

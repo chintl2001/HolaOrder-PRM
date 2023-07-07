@@ -15,7 +15,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,7 +51,8 @@ public class Home extends AppCompatActivity {
     TextView textItem;
     private RecyclerView.Adapter adapter, adapter2;
     private RecyclerView recyclerViewCaregoryList, recyclerViewPopularList;
-
+    //Search
+    EditText searchHome;
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +89,18 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        searchHome = findViewById(R.id.searchHome);
+        searchHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                // Intent sang Activity khác
+                Intent intent = new Intent(Home.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
