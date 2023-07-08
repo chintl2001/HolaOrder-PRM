@@ -6,17 +6,19 @@
     android:layout_margin="5dp"
     android:id="@+id/cartFood"
     app:cardElevation="3dp"
-    android:background="#6C6C6C">
+    android:background="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_item_C"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/border_button"
-        android:padding="10dp">
+        android:background="@drawable/radius_view"
+        android:padding="10dp"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
+            style="@style/Theme.AppCompat.Light.NoActionBar"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
