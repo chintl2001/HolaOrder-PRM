@@ -86,7 +86,7 @@ public class CartActivity extends AppCompatActivity {
                 Picasso.get().load(model.getImage()).into(holder.imgFood);
                 holder.tvFoodName.setText(model.getFname());
                 holder.tvPrice.setText("Price: " + model.getPrice() + "$");
-//                holder.tvQuantity.setText("Quantity" + model.getQuantity());
+                holder.tvQuantity.setText("Quantity" + model.getQuantity());
                 Cart clickItem = model;
                 Log.d("Cart", clickItem.toString());
                 holder.setItemClickListener(new ItemClickListener() {
