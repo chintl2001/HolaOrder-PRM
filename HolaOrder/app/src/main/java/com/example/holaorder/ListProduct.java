@@ -218,46 +218,6 @@ public class ListProduct extends AppCompatActivity {
                         Toast.makeText(ListProduct.this, clickItem.getName(), Toast.LENGTH_SHORT).show();
                     }
                 });
-                foodViewHolder.btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        final String imageUrl = food.getImage();
-                        String saveCurrentTime, saveCurrentDate;
-
-                        Calendar calForDate = Calendar.getInstance();
-                        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
-                        saveCurrentDate = currentDate.format(calForDate.getTime());
-
-                        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
-                        saveCurrentTime = currentTime.format(calForDate.getTime());
-
-                        DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("CartList");
-
-                        final HashMap<String, Object> cartMap = new HashMap<>();
-                        cartMap.put("fname", foodViewHolder.tvFoodName.getText().toString());
-                        cartMap.put("price", foodViewHolder.tvPrice.getText().toString());
-                        cartMap.put("date", saveCurrentDate);
-                        cartMap.put("time", saveCurrentTime);
-                        cartMap.put("img", imageUrl);
-
-
-
-                        String cartItemId = cartListRef.child("CartView")
-                                .child(Prevalent.currentOnlineUser.getPhone()).child("Foods")
-                                .push().getKey();
-                        cartListRef.child("CartView")
-                                .child(Prevalent.currentOnlineUser.getPhone())
-                                .child("Foods").child(cartItemId).setValue(cartMap)
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                            Toast.makeText(ListProduct.this, "Added to Cart ", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                    }
-                });
             }
         };
         recyclerViewProduct.setAdapter(adapter);

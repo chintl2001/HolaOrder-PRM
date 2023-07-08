@@ -188,6 +188,7 @@ public class Home extends AppCompatActivity {
 
             @Override
             protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int position, @NonNull Food food) {
+                String foodId = getRef(position).getKey();
                 foodViewHolder.tvFoodName.setText(food.getName());
                 Picasso.get().load(food.getImage()).into(foodViewHolder.imgFood);
                 foodViewHolder.tvPrice.setText(food.getPrice());
@@ -195,6 +196,14 @@ public class Home extends AppCompatActivity {
                 Food clickItem = food;
                 Log.d("Food", food.toString());
 
+                foodViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Home.this, DetailFood.class);
+                        intent.putExtra("FoodId", foodId);
+                        startActivity(intent);
+                    }
+                });
                 foodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
