@@ -42,6 +42,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -72,7 +73,7 @@ public class Home extends AppCompatActivity {
 
         ((TextView) findViewById(R.id.textHello)).setText("Hello, " + Common.currentUser.getName());
         recyclerViewCaregory();
-        recyclerViewPopular();
+        recyclerViewPopular("");
 
         textItem = ((TextView) findViewById(R.id.textItem));
 
@@ -115,15 +116,6 @@ public class Home extends AppCompatActivity {
         recyclerViewCaregoryList = findViewById(R.id.recyclerView);
         recyclerViewCaregoryList.setLayoutManager(linearLayoutManager);
 
-        /*ArrayList<CategoryDomain> category = new ArrayList<CategoryDomain>();
-        category.add(new CategoryDomain("Pizza","cat_1"));
-        category.add(new CategoryDomain("Burger","cat_2"));
-        category.add(new CategoryDomain("Hotdog","cat_3"));
-        category.add(new CategoryDomain("Drink","cat_4"));
-        category.add(new CategoryDomain("Donut","cat_5"));
-
-        adapter = new CategoryAdapter(category);
-        recyclerViewCaregoryList.setAdapter(adapter);*/
         FirebaseRecyclerOptions<Category> options =
                 new FirebaseRecyclerOptions.Builder<Category>()
                         .setQuery(table_category, Category.class)
@@ -147,8 +139,9 @@ public class Home extends AppCompatActivity {
                 categoryViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
+                        String selectedCategory = category.getName();
+                        recyclerViewPopular(selectedCategory.isEmpty() ? "" : selectedCategory);
                         Toast.makeText(Home.this, clickItem.getName(), Toast.LENGTH_SHORT).show();
-
                     }
                 });
             }
@@ -157,25 +150,22 @@ public class Home extends AppCompatActivity {
         adapter.startListening();
     }
 
-    private void recyclerViewPopular() {
+    private void recyclerViewPopular(String category) {
+        Query qrr;
+        if (category.isEmpty()) {
+            qrr = table_product;
+        } else {
+            qrr = table_product.orderByChild("CategoryId").equalTo(category);
+        }
+        FirebaseRecyclerOptions<Food> options =
+                new FirebaseRecyclerOptions.Builder<Food>()
+                        .setQuery(qrr, Food.class)
+                        .build();
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerViewPopularList = findViewById(R.id.recyclerView2);
         recyclerViewPopularList.setLayoutManager(linearLayoutManager);
-        //GridLayoutManager layoutManagerGrid = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
-        //recyclerViewPopularList.setLayoutManager(layoutManagerGrid);
 
-        /*ArrayList<FoodDomain> foodList = new ArrayList<>();
-        foodList.add(new FoodDomain("Pepperoni Pizza", "pizza1", "slices pepperoni, mozzerella cheese", 9.76));
-        foodList.add(new FoodDomain("Cheese Burger", "burger", "beef, cheese, sauce, tomato", 8.79));
-        foodList.add(new FoodDomain("Vegetable pizza", "pizza2", "olive oil, vegetable oil, cherry tomatoes, basil", 8.5));
-
-        adapter2 = new PopularAdapter(foodList);
-        recyclerViewPopularList.setAdapter(adapter2);*/
-
-        FirebaseRecyclerOptions<Food> options =
-                new FirebaseRecyclerOptions.Builder<Food>()
-                        .setQuery(table_product, Food.class)
-                        .build();
 
         FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
             @NonNull
@@ -210,46 +200,7 @@ public class Home extends AppCompatActivity {
                         Toast.makeText(Home.this, clickItem.getName(), Toast.LENGTH_SHORT).show();
                     }
                 });
-                foodViewHolder.btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        final String imageUrl = food.getImage();
-                        String saveCurrentTime, saveCurrentDate;
 
-                        Calendar calForDate = Calendar.getInstance();
-                        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
-                        saveCurrentDate = currentDate.format(calForDate.getTime());
-
-                        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
-                        saveCurrentTime = currentTime.format(calForDate.getTime());
-
-                        DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("CartList");
-
-                        final HashMap<String, Object> cartMap = new HashMap<>();
-                        cartMap.put("fname", foodViewHolder.tvFoodName.getText().toString());
-                        cartMap.put("price", foodViewHolder.tvPrice.getText().toString());
-                        cartMap.put("date", saveCurrentDate);
-                        cartMap.put("time", saveCurrentTime);
-                        cartMap.put("img", imageUrl);
-
-
-
-                        String cartItemId = cartListRef.child("CartView")
-                                .child(Prevalent.currentOnlineUser.getPhone()).child("Foods")
-                                .push().getKey();
-                        cartListRef.child("CartView")
-                                .child(Prevalent.currentOnlineUser.getPhone())
-                                .child("Foods").child(cartItemId).setValue(cartMap)
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                            Toast.makeText(Home.this, "Added to Cart ", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                    }
-                });
             }
         };
         recyclerViewPopularList.setAdapter(adapter);
