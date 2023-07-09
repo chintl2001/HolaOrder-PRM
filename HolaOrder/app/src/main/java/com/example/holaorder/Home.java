@@ -16,7 +16,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,7 +57,8 @@ public class Home extends AppCompatActivity {
     TextView textItem;
     private RecyclerView.Adapter adapter, adapter2;
     private RecyclerView recyclerViewCaregoryList, recyclerViewPopularList;
-
+    //Search
+    EditText searchHome;
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +95,18 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        searchHome = findViewById(R.id.searchHome);
+        searchHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                // Intent sang Activity khác
+                Intent intent = new Intent(Home.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -173,6 +188,7 @@ public class Home extends AppCompatActivity {
 
             @Override
             protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int position, @NonNull Food food) {
+                String foodId = getRef(position).getKey();
                 foodViewHolder.tvFoodName.setText(food.getName());
                 Picasso.get().load(food.getImage()).into(foodViewHolder.imgFood);
                 foodViewHolder.tvPrice.setText(food.getPrice());
@@ -180,6 +196,14 @@ public class Home extends AppCompatActivity {
                 Food clickItem = food;
                 Log.d("Food", food.toString());
 
+                foodViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Home.this, DetailFood.class);
+                        intent.putExtra("FoodId", foodId);
+                        startActivity(intent);
+                    }
+                });
                 foodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
