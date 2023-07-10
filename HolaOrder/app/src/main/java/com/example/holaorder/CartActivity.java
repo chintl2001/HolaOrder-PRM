@@ -108,6 +108,7 @@ public class CartActivity extends AppCompatActivity {
                     }
                 });
 
+                //Remove & Edit Product
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
