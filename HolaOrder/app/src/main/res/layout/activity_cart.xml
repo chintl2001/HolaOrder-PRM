@@ -32,12 +32,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </LinearLayout>
-
+    <!--   android:layout_height="389dp"     -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_cart"
         style="@style/Theme.AppCompat.Light.NoActionBar"
         android:layout_width="match_parent"
-        android:layout_height="389dp"
+        android:layout_height="550dp"
+
         android:background="@color/white"
         tools:listitem="@layout/item_cart" />
 
@@ -50,50 +51,51 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:text="Subtotal"
-            android:textColor="#676565"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:text="Subtotal"-->
+<!--            android:textColor="#676565"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textStyle="bold" />-->
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:text="Shipping"
-            android:textColor="#676565"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:text="Shipping"-->
+<!--            android:textColor="#676565"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textStyle="bold" />-->
 
-        <View
-            android:layout_width="380dp"
-            android:layout_height="2dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="#5F5F5F" />
+<!--        <View-->
+<!--            android:layout_width="380dp"-->
+<!--            android:layout_height="2dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:background="#5F5F5F" />-->
 
-        <TextView
-            android:id="@+id/tv_total_C"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:text="Total"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_total_C"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:text="Total"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="24sp"-->
+<!--            android:textStyle="bold" />-->
 
         <Button
             android:id="@+id/btn_order_C"
             android:layout_width="380dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="30dp"
             android:background="@drawable/button_black"
             android:text="Order" />
 
