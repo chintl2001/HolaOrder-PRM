@@ -6,6 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +26,8 @@ import com.example.holaorder.ViewHolder.CartViewHolder;
 import com.example.holaorder.ViewHolder.CategoryViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -40,11 +45,12 @@ public class CartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        table_cart = database.getReference("CartList")
-                .child("CartView")
-                .child(Prevalent.currentOnlineUser.getPhone())
-                .child("Foods");
+        //FirebaseDatabase database = FirebaseDatabase.getInstance();
+        //FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        table_cart = database.getReference("CartList")
+//                .child("CartView")
+//                .child(Prevalent.currentOnlineUser.getPhone())
+//                .child("Foods");
 
         recyclerView = (RecyclerView) findViewById(R.id.rv_cart);
         recyclerView.setHasFixedSize(true);
@@ -58,16 +64,20 @@ public class CartActivity extends AppCompatActivity {
         loadCart();
 
         OrderBtn = (Button) findViewById(R.id.btn_order_C);
-        txtTotalAmount = (TextView) findViewById(R.id.tv_total_C);
+//        txtTotalAmount = (TextView) findViewById(R.id.tv_total_C);
 
 
     }
 
     private void loadCart() {
 
+        final  DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("CartList");
+
         FirebaseRecyclerOptions<Cart> options =
                 new FirebaseRecyclerOptions.Builder<Cart>()
-                        .setQuery(table_cart, Cart.class)
+                        .setQuery(cartListRef.child("CartView")
+                                .child(Prevalent.currentOnlineUser.getPhone())
+                                .child("Foods"), Cart.class)
                         .build();
 
         FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter
@@ -76,17 +86,19 @@ public class CartActivity extends AppCompatActivity {
             @NonNull
             @Override
             public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cart, parent,false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cart, parent, false);
                 CartViewHolder holder = new CartViewHolder(view);
                 return holder;
 
             }
+
             @Override
             protected void onBindViewHolder(@NonNull CartViewHolder holder, int position, @NonNull Cart model) {
+                String foodId = getRef(position).getKey();
                 Picasso.get().load(model.getImage()).into(holder.imgFood);
                 holder.tvFoodName.setText(model.getFname());
                 holder.tvPrice.setText("Price: " + model.getPrice() + "$");
-                holder.tvQuantity.setText("Quantity" + model.getQuantity());
+                holder.tvQuantity.setText("Quantity: " + model.getQuantity());
                 Cart clickItem = model;
                 Log.d("Cart", clickItem.toString());
                 holder.setItemClickListener(new ItemClickListener() {
@@ -95,6 +107,55 @@ public class CartActivity extends AppCompatActivity {
                         Toast.makeText(CartActivity.this, clickItem.getFname(), Toast.LENGTH_SHORT).show();
                     }
                 });
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        CharSequence options[] = new CharSequence[]
+                                {
+                                        "Edit",
+                                        "Remove"
+                                };
+                        AlertDialog.Builder builder = new AlertDialog.Builder(CartActivity.this);
+                        builder.setTitle("Cart Options:");
+
+                        builder.setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                if (i == 0) {
+                                    Intent intent = new Intent(CartActivity.this, DetailFood.class);
+                                    intent.putExtra("FoodId", foodId);
+                                    startActivity(intent);
+                                }
+                                if (i == 1) {
+                                    cartListRef.child("CartView")
+                                            .child(Prevalent.currentOnlineUser.getPhone())
+                                            .child("Foods")
+                                            .child(foodId)
+                                            .removeValue()
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        Toast.makeText(CartActivity.this, "Item Removed Successfully", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+                                }
+                            }
+                        });
+                        builder.show();
+                    }
+                });
+            }
+            @Override
+            public void onDataChanged() {
+                super.onDataChanged();
+                if (getItemCount() == 0) {
+                    Intent intent = new Intent(CartActivity.this, ListProduct.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         };
         recyclerView.setAdapter(adapter);

@@ -31,6 +31,7 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="10dp"
+                app:srcCompat="@drawable/pop_1"
                  />
 
             <LinearLayout
