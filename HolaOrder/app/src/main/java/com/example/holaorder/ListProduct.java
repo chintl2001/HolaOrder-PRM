@@ -6,6 +6,8 @@ import android.os.Debug;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -66,6 +68,8 @@ public class ListProduct extends AppCompatActivity {
     TextView txtFullName, txtEmail;
     ImageView imgUpload;
     DrawerLayout drawerLayout;
+    //Search
+    EditText searchView;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -93,7 +97,7 @@ public class ListProduct extends AppCompatActivity {
         ((TextView) findViewById(R.id.tvHelloUser)).setText(Common.currentUser.getName());
 
         loadCategory();
-        loadProduct();
+        loadProduct("");
         NavSettup();
 
         ImageButton btn_cart = (ImageButton)  findViewById(R.id.cartViewButton);
@@ -105,6 +109,19 @@ public class ListProduct extends AppCompatActivity {
             }
         });
 
+        //ToDo:Search
+        searchView = findViewById(R.id.searchView);
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                // Intent sang Activity khác
+                Intent intent = new Intent(ListProduct.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -135,6 +152,10 @@ public class ListProduct extends AppCompatActivity {
                 categoryViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
+                        // Lấy danh mục được click
+                        String selectedCategory = category.getName();
+                        // Gọi phương thức loadProduct() với danh mục đã chọn hoặc rỗng
+                        loadProduct(selectedCategory.isEmpty() ? "" : selectedCategory);
                         Toast.makeText(ListProduct.this, clickItem.getName(), Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -146,11 +167,19 @@ public class ListProduct extends AppCompatActivity {
 
 
     // bản khác
-    private void loadProduct() {
+    private void loadProduct(String category) {
+        Query query;
 
+        if (category.isEmpty()) {
+            // Hiển thị tất cả sản phẩm nếu không có danh mục được chọn
+            query = table_product;
+        } else {
+            // Hiển thị sản phẩm theo danh mục được chọn
+            query = table_product.orderByChild("CategoryId").equalTo(category);
+        }
         FirebaseRecyclerOptions<Food> options =
                 new FirebaseRecyclerOptions.Builder<Food>()
-                        .setQuery(table_product, Food.class)
+                        .setQuery(query, Food.class)
                         .build();
 
         FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
@@ -166,6 +195,7 @@ public class ListProduct extends AppCompatActivity {
 
             @Override
             protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int position, @NonNull Food food) {
+                String foodId = getRef(position).getKey();
                 foodViewHolder.tvFoodName.setText(food.getName());
                 Picasso.get().load(food.getImage()).into(foodViewHolder.imgFood);
                 foodViewHolder.tvPrice.setText(food.getPrice());
@@ -173,50 +203,19 @@ public class ListProduct extends AppCompatActivity {
                 Food clickItem = food;
                 Log.d("Food", food.toString());
 
+                foodViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(ListProduct.this, DetailFood.class);
+                        intent.putExtra("FoodId", foodId);
+                        startActivity(intent);
+                    }
+                });
+
                 foodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         Toast.makeText(ListProduct.this, clickItem.getName(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-                foodViewHolder.btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        final String imageUrl = food.getImage();
-                        String saveCurrentTime, saveCurrentDate;
-
-                        Calendar calForDate = Calendar.getInstance();
-                        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
-                        saveCurrentDate = currentDate.format(calForDate.getTime());
-
-                        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
-                        saveCurrentTime = currentTime.format(calForDate.getTime());
-
-                        DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("CartList");
-
-                        final HashMap<String, Object> cartMap = new HashMap<>();
-                        cartMap.put("fname", foodViewHolder.tvFoodName.getText().toString());
-                        cartMap.put("price", foodViewHolder.tvPrice.getText().toString());
-                        cartMap.put("date", saveCurrentDate);
-                        cartMap.put("time", saveCurrentTime);
-                        cartMap.put("img", imageUrl);
-
-
-
-                        String cartItemId = cartListRef.child("CartView")
-                                .child(Prevalent.currentOnlineUser.getPhone()).child("Foods")
-                                .push().getKey();
-                        cartListRef.child("CartView")
-                                .child(Prevalent.currentOnlineUser.getPhone())
-                                .child("Foods").child(cartItemId).setValue(cartMap)
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                            Toast.makeText(ListProduct.this, "Added to Cart ", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
                     }
                 });
             }
