@@ -2,32 +2,21 @@ package com.example.holaorder;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Debug;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.view.inputmethod.InputMethodManager;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.bumptech.glide.Glide;
 import com.example.holaorder.Common.Common;
 import com.example.holaorder.Interface.ItemClickListener;
 import com.example.holaorder.Model.Category;
@@ -36,28 +25,13 @@ import com.example.holaorder.Model.User;
 import com.example.holaorder.ViewHolder.CategoryViewHolder;
 import com.example.holaorder.ViewHolder.FoodViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.*;
-import com.google.firebase.storage.FirebaseStorage;
-import com.squareup.picasso.Picasso;
-import de.hdodenhof.circleimageview.CircleImageView;
-
-import java.util.Objects;
-import com.example.holaorder.Prevalent.Prevalent;
-import com.example.holaorder.ViewHolder.CartViewHolder;
-import com.example.holaorder.ViewHolder.CategoryViewHolder;
-import com.example.holaorder.ViewHolder.FoodViewHolder;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.HashMap;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ListProduct extends AppCompatActivity {
     RecyclerView recyclerViewCategory, recyclerViewProduct;
@@ -254,4 +228,8 @@ public class ListProduct extends AppCompatActivity {
         }
     }
 
+    public void profile(MenuItem item) {
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+    }
 }
