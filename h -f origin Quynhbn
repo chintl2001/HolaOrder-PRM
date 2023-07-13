@@ -1,0 +1,281 @@
+[33mcommit fc7f22d3a0e23859e8cb8a3a913244314741a2ed[m[33m ([m[1;32mQuynhbn[m[33m)[m
+Merge: ecd0a3e d21b3fe
+Author: chintl2001 <121667404+chintl2001@users.noreply.github.com>
+Date:   Mon Jun 26 10:14:48 2023 +0700
+
+    Merge pull request #16 from chintl2001/quynhbn
+    
+    Quynhbn
+
+[33mcommit d21b3fe7b33b357a29535f6e3333b06898411dd3[m
+Author: quynhbn272 <115777816+quynhbn27@users.noreply.github.com>
+Date:   Mon Jun 26 10:08:15 2023 +0700
+
+    Conflict
+
+[33mcommit ecd0a3ea9389f0c7a0e44a4c39aefbf86a582dda[m
+Merge: 7db2853 21ed44b
+Author: huypnd27698 <135795418+huypnd27698@users.noreply.github.com>
+Date:   Mon Jun 26 10:05:34 2023 +0700
+
+    Merge pull request #15 from chintl2001/Huypnd
+    
+    commit home screen
+
+[33mcommit 21ed44b4864a89a2c714bc53b0ef1efc6412d7ab[m
+Author: huypnd <135795418+huypnd27698@users.noreply.github.com>
+Date:   Mon Jun 26 10:04:39 2023 +0700
+
+    commit sign in
+
+[33mcommit 284f56a700ec18eddd79d4a8c1b2da6346384e00[m
+Author: huypnd <135795418+huypnd27698@users.noreply.github.com>
+Date:   Mon Jun 26 09:28:43 2023 +0700
+
+    commit home activity
+
+[33mcommit 7db2853ffffbc151bea97409f57bda9bab2506c0[m[33m ([m[1;31morigin/huypnd1[m[33m)[m
+Author: chilinhnguyen <nguyenlinhchitqp@gmail.com>
+Date:   Mon Jun 26 09:11:09 2023 +0700
+
+    create list product scense adn update login
+
+[33mcommit b3013e845526d17312668f903295c3c020ef39fb[m
+Merge: 39c6875 2e80817
+Author: quynhbn272 <115777816+quynhbn27@users.noreply.github.com>
+Date:   Mon Jun 26 08:31:27 2023 +0700
+
+    Merge branch 'main' of https://github.com/chintl2001/HolaOrder-PRM into quynhbn
+
+[33mcommit 2e80817bebf9819099dd6831a003ceaa9be1b26f[m
+Merge: ef38413 bc99e7c
+Author: chintl2001 <121667404+chintl2001@users.noreply.github.com>
+Date:   Mon Jun 26 08:29:55 2023 +0700
+
+    Merge pull request #12 from chintl2001/Quynhbn
+    
+    Fix SignUp LoginAgain
+
+[33mcommit ef384139828bd3afb02cc7325c4afe988e34c975[m
+Author: chilinhnguyen <nguyenlinhchitqp@gmail.com>
+Date:   Mon Jun 26 08:29:15 2023 +0700
+
+    create list product scense
+
+[33mcommit 39c687541d6ce6ebd63bdb36d761e17b03f7678c[m
+Merge: bc99e7c 6234ae7
+Author: quynhbn272 <115777816+quynhbn27@users.noreply.github.com>
+Date:   Sat Jun 24 22:37:38 2023 +0700
+
+    Merge branch 'main' of https://github.com/chintl2001/HolaOrder-PRM into Quynhbn
+
+[33mcommit bc99e7ca5c2cc3345406043d195cb98b2a2fa531[m[33m ([m[1;31morigin/Quynhbn[m[33m)[m
+Author: quynhbn272 <115777816+quynhbn27@users.noreply.github.com>
+Date:   Sat Jun 24 22:35:47 2023 +0700
+
+    Fix SignUp LoginAgain
+
+[33mcommit 6234ae7b6122fecb82890ecac5741021c4c0f2a4[m
+Merge: 7a16e96 08f8af1
+Author: chintl2001 <121667404+chintl2001@users.noreply.github.com>
+Date:   Sat Jun 24 18:40:30 2023 +0700
+
+    Merge pull request #11 from chintl2001/Quynhbn
+    
+    SignUp succes
+
+[33mcommit 08f8af10d1bba59573255b61ec97fc4e1b93b2f5[m
+Author: quynhbn272 <115777816+quynhbn27@users.noreply.github.com>
+Date:   Sat Jun 24 18:37:49 2023 +0700
+
+    SignUp succes
+
+[33mcommit 7a16e9631e5aad665e188b81328c13fa58c07466[m
+Merge: 2d5ad27 8b18a54
+Author: chilinhnguyen <nguyenlinhchitqp@gmail.com>
+Date:   Sat Jun 24 11:11:26 2023 +0700
+
+    Merge branch 'main' of https://github.com/chintl2001/HolaOrder-PRM
+
+[33mcommit 2d5ad278e88fba5a5e62bcb11ab7c5fe8fe03b71[m
+Author: chilinhnguyen <nguyenlinhchitqp@gmail.com>
+Date:   Sat Jun 24 11:11:19 2023 +0700
+
+    create interface, list product sence
+
+[33mcommit 8b18a541610f6e2a3062ff5867e46caf16741f50[m
+Merge: 01a4243 8f5a5f1
+Author: huypnd27698 <135795418+huypnd27698@users.noreply.github.com>
+Date:   Fri Jun 23 10:32:04 2023 +0700
+
+    Merge pull request #10 from chintl2001/Huypnd
+    
+    Merge pull request #9 from chintl2001/main
+
+[33mcommit 8f5a5f1e72c9dc75200b24b1177e1101bfc51ccf[m
+Merge: e936098 01a4243
+Author: huypnd27698 <135795418+huypnd27698@users.noreply.github.com>
+Date:   Fri Jun 23 10:31:46 2023 +0700
+
+    Merge pull request #9 from chintl2001/main
+    
+    pull
+
+[33mcommit 01a4243f4f0553b44d469afce67ce0f2535b1e13[m
+Merge: 583d813 3100029
+Author: chilinhnguyen <nguyenlinhchitqp@gmail.com>
+Date:   Fri Jun 23 08:23:56 2023 +0700
+
+    Merge branch 'main' of https://github.com/chintl2001/HolaOrder-PRM
+
+[33mcommit 310002915c4a67a052220166d9b473682de19917[m
+Merge: 3319491 226029d
+Author: chintl2001 <121667404+chintl2001@users.noreply.github.com>
+Date:   Fri Jun 23 08:09:38 2023 +0700
+
+    Merge pull request #8 from chintl2001/Quynhbn
+    
+    SignUp
+
+[33mcommit 583d8130e921f3af4da18b33bd7248c5f9ac89ee[m
+Merge: efe5444 3319491
+Author: chilinhnguyen <nguyenlinhchitqp@gmail.com>
+Date:   Fri Jun 23 08:03:18 2023 +0700
+
+    Merge branch 'main' of https://github.com/chintl2001/HolaOrder-PRM
+
+[33mcommit efe544435d556771cae2f1c607e0e9c2357ad2c9[m
+Author: chilinhnguyen <nguyenlinhchitqp@gmail.com>
+Date:   Fri Jun 23 08:02:51 2023 +0700
+
+    update login
+
+[33mcommit 226029d993b7d40c749f95a79fdf4e24d340f6ef[m
+Author: quynhbn272 <115777816+quynhbn27@users.noreply.github.com>
+Date:   Thu Jun 22 11:52:52 2023 +0700
+
+    SignUp
+
+[33mcommit 3319491107db46ba9a2e6fdf76dab1e58a8631f0[m
+Merge: c70d42c e936098
+Author: huypnd27698 <135795418+huypnd27698@users.noreply.github.com>
+Date:   Thu Jun 22 08:28:40 2023 +0700
+
+    Merge pull request #7 from chintl2001/Huypnd
+    
+    Merge pull request #5 from chintl2001/main
+
+[33mcommit e936098646908a7dce011cf35ee0ee6ff0522076[m
+Merge: a109277 c70d42c
+Author: huypnd27698 <135795418+huypnd27698@users.noreply.github.com>
+Date:   Thu Jun 22 08:14:44 2023 +0700
+
+    Merge pull request #5 from chintl2001/main
+    
+    Pull
+
+[33mcommit c70d42c71de80b6aa14870ee8d34a6ae935a9276[m
+Author: chilinhnguyen <nguyenlinhchitqp@gmail.com>
+Date:   Thu Jun 22 00:48:55 2023 +0700
+
+    edit login
+
+[33mcommit a9d1e5b2001ce34a053aa8d77b488119023bc16f[m
+Author: chilinhnguyen <nguyenlinhchitqp@gmail.com>
+Date:   Tue Jun 20 11:01:52 2023 +0700
+
+    add sign up sences
+
+[33mcommit 8acdd49c10f480bde4e6b1e9f2aaa1e419eae224[m
+Author: chilinhnguyen <nguyenlinhchitqp@gmail.com>
+Date:   Tue Jun 20 09:41:34 2023 +0700
+
+    login
+
+[33mcommit 9264aa6206955671e6c069c31768932ec52a6e89[m
+Author: chilinhnguyen <nguyenlinhchitqp@gmail.com>
+Date:   Tue Jun 20 07:49:17 2023 +0700
+
+    login
+
+[33mcommit 944a9d1faf85afbef870b256188d4126d7881441[m
+Merge: 0818665 ab7eb97
+Author: chintl2001 <121667404+chintl2001@users.noreply.github.com>
+Date:   Mon Jun 19 23:25:51 2023 +0700
+
+    Merge pull request #3 from chintl2001/Chintl
+    
+    Chintl
+
+[33mcommit ab7eb97f5d57da3de2dcbc634a3d22c539437c11[m[33m ([m[1;31morigin/Chintl[m[33m, [m[1;32mChintl[m[33m)[m
+Merge: 12aa4e0 0818665
+Author: chilinhnguyen <nguyenlinhchitqp@gmail.com>
+Date:   Mon Jun 19 23:25:29 2023 +0700
+
+    Merge branch 'main' into Chintl
+
+[33mcommit 08186650ce069d2410eccb975a1db12f5aedebdb[m
+Author: chilinhnguyen <nguyenlinhchitqp@gmail.com>
+Date:   Mon Jun 19 23:24:30 2023 +0700
+
+    update
+
+[33mcommit 12aa4e06fbef00e181c2b1e02e1047f1f3d222ba[m
+Author: chilinhnguyen <nguyenlinhchitqp@gmail.com>
+Date:   Mon Jun 19 23:18:34 2023 +0700
+
+    update project lib
+
+[33mcommit b056e3cd898c69bc1c4f64e1e43d5089cf451500[m
+Author: chilinhnguyen <nguyenlinhchitqp@gmail.com>
+Date:   Mon Jun 19 21:54:07 2023 +0700
+
+    create again
+
+[33mcommit adf074272d41dc858b7761d3879bc4324b5808bb[m
+Author: chilinhnguyen <nguyenlinhchitqp@gmail.com>
+Date:   Mon Jun 19 21:30:51 2023 +0700
+
+    update gradle
+
+[33mcommit 6b540c69e05a1bd94e4cff3a3ee5a8606aa887a5[m
+Author: quynhbn272 <115777816+quynhbn27@users.noreply.github.com>
+Date:   Mon Jun 19 21:29:44 2023 +0700
+
+    Push
+
+[33mcommit d97c821cecaf4302335c90756eb1269197177bc0[m
+Merge: 1cce32f 08e36d9
+Author: chintl2001 <121667404+chintl2001@users.noreply.github.com>
+Date:   Mon Jun 19 21:13:20 2023 +0700
+
+    Merge pull request #2 from chintl2001/Chintl
+    
+    create login
+
+[33mcommit 08e36d99cb67d9721a4e40f40067fbb103e8d576[m
+Author: chilinhnguyen <nguyenlinhchitqp@gmail.com>
+Date:   Mon Jun 19 21:12:40 2023 +0700
+
+    create login
+
+[33mcommit 1cce32fa805c34aba5fab1b0c9e0e2187089a957[m
+Merge: a109277 af8bfb2
+Author: chintl2001 <121667404+chintl2001@users.noreply.github.com>
+Date:   Mon Jun 19 17:41:19 2023 +0700
+
+    Merge pull request #1 from chintl2001/Chintl
+    
+    add library firebase and welcome home
+
+[33mcommit af8bfb23210b526bbb767d77e33066bac8f85b66[m
+Author: chilinhnguyen <nguyenlinhchitqp@gmail.com>
+Date:   Mon Jun 19 17:40:41 2023 +0700
+
+    add library firebase and welcome home
+
+[33mcommit a109277eab2733ba62be2151d56268fa55727c7c[m[33m ([m[1;31morigin/Thanhnh[m[33m)[m
+Author: chilinhnguyen <nguyenlinhchitqp@gmail.com>
+Date:   Wed Jun 14 22:10:58 2023 +0700
+
+    Create Project
