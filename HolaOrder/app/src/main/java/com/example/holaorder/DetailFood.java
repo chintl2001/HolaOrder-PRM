@@ -114,19 +114,7 @@ public class DetailFood extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        cartListRef.child("View")
-                                                .child(Prevalent.currentOnlineUser.getPhone())
-                                                .child("Foods")
-                                                .child(foodId)
-                                                .updateChildren(cartMap)
-                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                    @Override
-                                                    public void onComplete(@NonNull Task<Void> task) {
-                                                        if (task.isSuccessful()) {
-                                                            Toast.makeText(DetailFood.this, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    }
-                                                });
+                                        Toast.makeText(DetailFood.this, "Add to cart successfully", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
