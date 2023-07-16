@@ -34,12 +34,15 @@ import com.example.holaorder.Interface.ItemClickListener;
 import com.example.holaorder.Model.Category;
 import com.example.holaorder.Model.Food;
 import com.example.holaorder.Prevalent.Prevalent;
+import com.example.holaorder.Sellers.SellerHomeActivity;
 import com.example.holaorder.ViewHolder.CategoryViewHolder;
 import com.example.holaorder.ViewHolder.FoodViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -212,4 +215,17 @@ public class Home extends AppCompatActivity {
         startActivity(productListIntent);
 
     }
+
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//
+//        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+//        if (firebaseUser!=null){
+//            Intent intent = new Intent(Home.this, SellerHomeActivity.class);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//            startActivity(intent);
+//            finish();
+//        }
+//    }
 }
