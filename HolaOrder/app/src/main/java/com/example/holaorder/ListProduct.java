@@ -232,4 +232,9 @@ public class ListProduct extends AppCompatActivity {
         Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
     }
+
+    public void changePass(MenuItem item) {
+        Intent intent = new Intent(this, ChangePasswordAct.class);
+        startActivity(intent);
+    }
 }
