@@ -51,7 +51,6 @@ public class SignIn extends AppCompatActivity {
             // Hiển thị thông báo hoặc thực hiện các hành động tương ứng
             edtUsername.setText(savedPhone);
             edtPassword.setText(savedPassword);
-            checkBoxRemember.setChecked(true);
             Toast.makeText(this, "Đã lưu thông tin của bạn", Toast.LENGTH_SHORT).show();
            //Lưu thông tin
             User user = new User();
@@ -87,14 +86,17 @@ public class SignIn extends AppCompatActivity {
                         boolean isSignInSuccessful = false;
 
                         for (DataSnapshot userSnapshot : snapshot.getChildren()) {
-                            User user = userSnapshot.getValue(User.class);
-                            if (user != null) {
+                            String phone = userSnapshot.getKey();
+                            if (phone != null && phone.equals(edtUsername.getText().toString())) {
+                                User user = userSnapshot.getValue(User.class);
+
+                                user.setPhone(edtUsername.getText().toString());
                                 Common.currentUser = user;
-                                Log.d("My App", user.toString());
                                 isSignInSuccessful = true;
                                 break;
                             }
                         }
+
 
                         if (isSignInSuccessful) {
                             Toast.makeText(SignIn.this, "Sign in successfully!", Toast.LENGTH_SHORT).show();
