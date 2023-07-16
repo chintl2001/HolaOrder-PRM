@@ -12,111 +12,129 @@
             android:layout_height="522dp" android:id="@+id/view3"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             android:background="@drawable/border_login" app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNam" android:layout_marginTop="10dp"
+            app:layout_constraintVertical_bias="1.0"/>
     <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" tools:srcCompat="@tools:sample/avatars" android:id="@+id/imgUser"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.501" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="3dp" app:layout_constraintTop_toBottomOf="@+id/textView6"
-            android:layout_marginBottom="7dp" app:layout_constraintBottom_toTopOf="@+id/tvPhone"/>
+            android:layout_width="140dp"
+            android:layout_height="140dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/imgUser"
+            android:layout_marginTop="28dp"
+            android:src="@drawable/girl"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="140dp"/>
     <TextView
             android:text="Profile Information"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/textView6"
-            android:textStyle="bold" android:textSize="24sp" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.487" app:layout_constraintEnd_toEndOf="parent"
-            android:textColor="#000000" app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="35dp"
-            android:layout_marginBottom="22dp" app:layout_constraintBottom_toTopOf="@+id/imgUser"/>
+            android:textStyle="bold" android:textSize="24sp"
+            android:textColor="#000000"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="26dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="104dp"/>
     <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/tvPhone"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintEnd_toEndOf="parent" android:textColor="#000000" android:textSize="16sp"
-            android:layout_marginTop="4dp" app:layout_constraintTop_toBottomOf="@+id/imgUser"/>
+            android:textColor="#000000" android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/imgUser" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="168dp" android:textStyle="bold"/>
     <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/tvNam"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintEnd_toEndOf="parent" android:textColor="#000000" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/tvPhone" android:layout_marginBottom="15dp"
-            app:layout_constraintBottom_toTopOf="@+id/view3"/>
+            android:textColor="#000000"
+            android:layout_marginTop="9dp"
+            app:layout_constraintTop_toBottomOf="@+id/tvPhone" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="177dp"/>
     <TextView
             android:text="Email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/textView12"
-            android:textColor="#000000" app:layout_constraintEnd_toStartOf="@+id/edtEmail"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="@+id/view3"
-            android:layout_marginTop="56dp" app:layout_constraintHorizontal_bias="0.42"/>
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="@+id/view3"
+            app:layout_constraintTop_toTopOf="@+id/view3"
+            android:layout_marginTop="48dp"
+            android:layout_marginStart="48dp"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:text="Name"
             android:ems="10"
+
             android:id="@+id/edtEmail"
-            tools:layout_editor_absoluteX="142dp" app:layout_constraintTop_toTopOf="@+id/view3"
-            app:layout_constraintBottom_toTopOf="@+id/edtPhone"/>
+            app:layout_constraintTop_toTopOf="@+id/view3" android:layout_marginTop="30dp"
+            app:layout_constraintStart_toEndOf="@+id/textView12" android:layout_marginStart="56dp"/>
     <TextView
             android:text="Phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/textView13"
-            android:textColor="#000000" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12" app:layout_constraintBottom_toTopOf="@+id/textView8"
-            android:layout_marginStart="48dp" app:layout_constraintVertical_bias="0.538"/>
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="@+id/view3"
+            app:layout_constraintTop_toBottomOf="@+id/textView12"
+            android:layout_marginTop="76dp" android:layout_marginStart="44dp"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:text="Name"
             android:ems="10"
-            android:id="@+id/edtPhone" tools:layout_editor_absoluteY="413dp"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@+id/textView13"/>
+            android:id="@+id/edtPhone"
+            app:layout_constraintTop_toBottomOf="@+id/edtEmail"
+            android:layout_marginTop="40dp" app:layout_constraintStart_toEndOf="@+id/textView13"
+            android:layout_marginStart="56dp"/>
     <TextView
             android:text="Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#000000" android:id="@+id/textView8" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/imageView4" android:layout_marginStart="44dp"
-            android:layout_marginBottom="64dp"/>
+            android:textColor="#000000" android:id="@+id/textView8"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" app:layout_constraintStart_toStartOf="@+id/view3"
+            android:layout_marginTop="56dp" android:layout_marginStart="44dp"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:text="Name"
             android:ems="10"
-            android:id="@+id/edtName" tools:layout_editor_absoluteY="486dp"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@+id/textView8"/>
+            android:id="@+id/edtName"
+            app:layout_constraintTop_toBottomOf="@+id/edtPhone" app:layout_constraintStart_toEndOf="@+id/textView8"
+            android:layout_marginTop="40dp" android:layout_marginStart="56dp"/>
     <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="#CCCCCC" tools:layout_editor_absoluteY="577dp"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            android:background="#CCCCCC"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/view6"
+            app:layout_constraintTop_toBottomOf="@+id/edtName" android:layout_marginTop="30dp"/>
     <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="#CCCCCC" tools:layout_editor_absoluteY="663dp"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/view5"/>
+            android:background="#CCCCCC"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/view5"
+            app:layout_constraintTop_toBottomOf="@+id/tvMyOrder" android:layout_marginTop="32dp"/>
     <ImageView
             android:layout_width="49dp"
             android:layout_height="42dp" app:srcCompat="@drawable/baseline_fastfood_24"
-            android:id="@+id/imageView4" tools:layout_editor_absoluteY="597dp"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toStartOf="@+id/tvMyOrder"/>
+            android:id="@+id/imageView4"
+            app:layout_constraintTop_toBottomOf="@+id/view6" app:layout_constraintStart_toStartOf="@+id/view3"
+            android:layout_marginTop="20dp" android:layout_marginStart="44dp"/>
     <TextView
             android:text="My Order"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/tvMyOrder" tools:layout_editor_absoluteY="608dp"
+            android:layout_height="wrap_content" android:id="@+id/tvMyOrder"
             android:textStyle="bold" android:textSize="20sp"
-            android:textColor="#000000" tools:layout_editor_absoluteX="142dp"/>
+            android:textColor="#000000"
+            app:layout_constraintTop_toBottomOf="@+id/view6" app:layout_constraintStart_toEndOf="@+id/imageView4"
+            android:layout_marginTop="28dp" android:layout_marginStart="60dp"/>
     <Button
             android:text="Edit Profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/btnEdit"
-            android:backgroundTint="#FEB800" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="@+id/view3"
-            app:layout_constraintTop_toBottomOf="@+id/view5"/>
+            android:backgroundTint="#FEB800"
+            android:onClick="onClickEdit"
+            app:layout_constraintTop_toBottomOf="@+id/view5"
+            android:layout_marginTop="56dp" app:layout_constraintStart_toStartOf="@+id/view3"
+            android:layout_marginStart="148dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
