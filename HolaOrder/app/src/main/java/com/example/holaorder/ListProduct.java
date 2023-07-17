@@ -1,6 +1,7 @@
 package com.example.holaorder;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +34,9 @@ import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ListProduct extends AppCompatActivity {
     RecyclerView recyclerViewCategory, recyclerViewProduct;
     DatabaseReference table_category;
@@ -44,6 +48,8 @@ public class ListProduct extends AppCompatActivity {
     DrawerLayout drawerLayout;
     //Search
     EditText searchView;
+    public Context context;
+    private List<Food> foodList;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -163,7 +169,10 @@ public class ListProduct extends AppCompatActivity {
             @Override
             public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_popular, parent,false);
-                FoodViewHolder holder = new FoodViewHolder(view);
+                // Khởi tạo ViewHolder và truyền foodList vào
+                foodList = new ArrayList<>();
+
+                FoodViewHolder holder = new FoodViewHolder(view, parent.getContext(), foodList);
                 return holder;
             }
 
@@ -210,7 +219,6 @@ public class ListProduct extends AppCompatActivity {
         Picasso.get().load(user.getImage()).into(imgUser);
         txtFullName.setText(user.getName());
         txtEmail.setText(user.getEmail());
-        //TODO: upload profile
 
         findViewById(R.id.img_menu).setOnClickListener(v -> ShowNavigationBar());
     }
@@ -235,6 +243,16 @@ public class ListProduct extends AppCompatActivity {
 
     public void changePass(MenuItem item) {
         Intent intent = new Intent(this, ChangePasswordAct.class);
+        startActivity(intent);
+    }
+
+    public void listFood(MenuItem item) {
+        Intent intent = new Intent(this, ListProduct.class);
+        startActivity(intent);
+    }
+
+    public void clickHome(MenuItem item) {
+        Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }
 }

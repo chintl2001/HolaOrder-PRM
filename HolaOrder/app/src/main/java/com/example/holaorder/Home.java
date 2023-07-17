@@ -1,6 +1,7 @@
 package com.example.holaorder;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -49,13 +50,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 
 public class Home extends AppCompatActivity {
-
+    Context context;
     Button LogoutBtn;
     DatabaseReference table_category;
     DatabaseReference table_product;
     TextView textItem;
+    private List<Food> foodList;
     private RecyclerView.Adapter adapter, adapter2;
     private RecyclerView recyclerViewCaregoryList, recyclerViewPopularList;
     //Search
@@ -172,7 +175,7 @@ public class Home extends AppCompatActivity {
             @Override
             public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_popular, parent,false);
-                FoodViewHolder holder = new FoodViewHolder(view);
+                FoodViewHolder holder = new FoodViewHolder(view, context, foodList);
                 return holder;
             }
 

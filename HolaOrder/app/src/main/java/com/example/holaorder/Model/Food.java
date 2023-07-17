@@ -1,6 +1,7 @@
 package com.example.holaorder.Model;
 
 public class Food {
+    private String Id;
     private String Name;
     private String Image;
     private String CategoryId;
@@ -20,6 +21,14 @@ public class Food {
         Discount = discount;
         Price = price;
         Rate = rate;
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
     }
 
     public String getName() {
