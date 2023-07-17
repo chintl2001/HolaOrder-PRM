@@ -18,6 +18,15 @@
         <activity
             android:name=".Sellers.SellerCategory"
             android:exported="false">
+                android:name=".FavoritesAct"
+                android:exported="false">
+            <meta-data
+                    android:name="android.app.lib_name"
+                    android:value=""/>
+        </activity>
+        <activity
+                android:name=".ChangePasswordAct"
+                android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
