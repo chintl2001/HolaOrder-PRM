@@ -6,16 +6,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity" android:background="#FFFFFF">
+
     <View
-            android:layout_width="412dp"
-            android:layout_height="327dp"
-            android:id="@+id/view2"
-            android:background="@drawable/boder"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="1dp"/>
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="327dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/boder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView2"
