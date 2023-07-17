@@ -17,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.holaorder.Common.Common;
 import com.example.holaorder.Model.User;
 import com.example.holaorder.Prevalent.Prevalent;
+import com.example.holaorder.Sellers.SellerSignIn;
+import com.example.holaorder.Sellers.SellerSignUp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -28,7 +30,7 @@ import io.paperdb.Paper;
 
 public class SignIn extends AppCompatActivity {
     EditText edtUsername, edtPassword;
-    Button btnSignIn;
+    Button btnSignIn, btn_SellerSignUp;
     CheckBox checkBoxRemember;
 
     @Override
@@ -39,6 +41,7 @@ public class SignIn extends AppCompatActivity {
         edtUsername = findViewById(R.id.edtUsername);
         edtPassword = findViewById(R.id.edtPassword);
         btnSignIn = findViewById(R.id.btn_signin);
+        btn_SellerSignUp = findViewById(R.id.btn_seller_SI);
         checkBoxRemember = findViewById(R.id.remember_me_chkb);
         Paper.init(this);
 
@@ -123,7 +126,14 @@ public class SignIn extends AppCompatActivity {
                 });
             }
         });
-
+        //Sign Up Seller
+        btn_SellerSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignIn.this, SellerSignUp.class);
+                startActivity(intent);
+            }
+        });
 
 
 

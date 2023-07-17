@@ -35,10 +35,10 @@ import com.squareup.picasso.Picasso;
 public class CartActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-    private Button OrderBtn;
+    private Button OrderBtn ;
     private TextView txtTotalAmount;
     DatabaseReference table_cart;
-
+    private int totalPrice = 0;
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +108,20 @@ public class CartActivity extends AppCompatActivity {
                     }
                 });
 
+                //TotalPrice
+                int totalPriceOfPFood = ((Integer.valueOf(model.getPrice()))) * Integer.valueOf(model.getQuantity());
+                totalPrice = totalPrice + totalPriceOfPFood;
+
+                OrderBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(CartActivity.this, OrderActivity.class);
+                        intent.putExtra("totalPriceOfPFood",totalPriceOfPFood);
+                        intent.putExtra("totalPrice", totalPrice);
+                        startActivity(intent);
+                    }
+                });
+
                 //Remove & Edit Product
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -155,6 +169,7 @@ public class CartActivity extends AppCompatActivity {
                 if (getItemCount() == 0) {
                     Intent intent = new Intent(CartActivity.this, ListProduct.class);
                     startActivity(intent);
+                    Toast.makeText(CartActivity.this, "Your cart is empty, please place an order", Toast.LENGTH_SHORT).show();
                     finish();
                 }
             }
