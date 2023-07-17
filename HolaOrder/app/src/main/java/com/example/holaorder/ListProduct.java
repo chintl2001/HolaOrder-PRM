@@ -1,33 +1,23 @@
 package com.example.holaorder;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
-import android.os.Debug;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.view.inputmethod.InputMethodManager;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.bumptech.glide.Glide;
 import com.example.holaorder.Common.Common;
 import com.example.holaorder.Interface.ItemClickListener;
 import com.example.holaorder.Model.Category;
@@ -36,28 +26,16 @@ import com.example.holaorder.Model.User;
 import com.example.holaorder.ViewHolder.CategoryViewHolder;
 import com.example.holaorder.ViewHolder.FoodViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.*;
-import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import java.util.Objects;
-import com.example.holaorder.Prevalent.Prevalent;
-import com.example.holaorder.ViewHolder.CartViewHolder;
-import com.example.holaorder.ViewHolder.CategoryViewHolder;
-import com.example.holaorder.ViewHolder.FoodViewHolder;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ListProduct extends AppCompatActivity {
     RecyclerView recyclerViewCategory, recyclerViewProduct;
@@ -70,6 +48,8 @@ public class ListProduct extends AppCompatActivity {
     DrawerLayout drawerLayout;
     //Search
     EditText searchView;
+    public Context context;
+    private List<Food> foodList;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -189,7 +169,10 @@ public class ListProduct extends AppCompatActivity {
             @Override
             public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_popular, parent,false);
-                FoodViewHolder holder = new FoodViewHolder(view);
+                // Khởi tạo ViewHolder và truyền foodList vào
+                foodList = new ArrayList<>();
+
+                FoodViewHolder holder = new FoodViewHolder(view, parent.getContext(), foodList);
                 return holder;
             }
 
@@ -236,7 +219,6 @@ public class ListProduct extends AppCompatActivity {
         Picasso.get().load(user.getImage()).into(imgUser);
         txtFullName.setText(user.getName());
         txtEmail.setText(user.getEmail());
-        //TODO: upload profile
 
         findViewById(R.id.img_menu).setOnClickListener(v -> ShowNavigationBar());
     }
@@ -254,4 +236,23 @@ public class ListProduct extends AppCompatActivity {
         }
     }
 
+    public void profile(MenuItem item) {
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+    }
+
+    public void changePass(MenuItem item) {
+        Intent intent = new Intent(this, ChangePasswordAct.class);
+        startActivity(intent);
+    }
+
+    public void listFood(MenuItem item) {
+        Intent intent = new Intent(this, ListProduct.class);
+        startActivity(intent);
+    }
+
+    public void clickHome(MenuItem item) {
+        Intent intent = new Intent(this, Home.class);
+        startActivity(intent);
+    }
 }

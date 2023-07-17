@@ -4,6 +4,7 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/baseline_home_24"
+            android:onClick="clickHome"
             android:title="@string/nav_home" />
 
         <item
@@ -13,10 +14,11 @@
 
         <item
             android:id="@+id/nav_type"
-            android:icon="@drawable/icons8_grid_2_24px"
+            android:icon="@drawable/baseline_favorite_24"
             android:title="@string/nav_type" />
         <item
                 android:id="@+id/nav_food"
+                android:onClick="listFood"
                 android:icon="@drawable/baseline_fastfood_24"
                 android:title="@string/nav_food" />
 
@@ -28,11 +30,13 @@
             <item
                 android:id="@+id/nav_profile"
                 android:icon="@drawable/baseline_person_24"
+                android:onClick="profile"
                 android:title="@string/nav_profile" />
 
             <item
                 android:id="@+id/nav_pass"
                 android:icon="@drawable/icons8_lock_24px"
+                android:onClick="changePass"
                 android:title="@string/nav_chancePass" />
 
             <item

@@ -18,6 +18,12 @@ public class User {
         Email = email;
     }
 
+    public User(String name, String phone, String email) {
+        Name = name;
+        Phone = phone;
+        Email = email;
+    }
+
     public User(String name, String password) {
         Name = name;
         Password = password;
@@ -68,6 +74,8 @@ public class User {
                 "Name='" + Name + '\'' +
                 ", Password='" + Password + '\'' +
                 ", Phone='" + Phone + '\'' +
+                ", Image='" + Image + '\'' +
+                ", Email='" + Email + '\'' +
                 '}';
     }
 }

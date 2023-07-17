@@ -1,5 +1,6 @@
 package com.example.holaorder;
 
+import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -25,13 +26,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.rey.material.widget.ImageButton;
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 public class SearchActivity extends AppCompatActivity {
 
     private ImageButton searchBtn;
+    Context context;
     private EditText inputText;
     private RecyclerView searchList;
     private String SearchInput;
-
+    private List<Food> foodList;
 
 
     @SuppressLint("WrongViewCast")
@@ -87,7 +91,7 @@ public class SearchActivity extends AppCompatActivity {
                     @Override
                     public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_popular, parent,false);
-                        FoodViewHolder holder = new FoodViewHolder(view);
+                        FoodViewHolder holder = new FoodViewHolder(view, context, foodList);
                         return holder;
                     }
                 } ;
