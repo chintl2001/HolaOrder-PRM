@@ -91,7 +91,7 @@ public class SearchActivity extends AppCompatActivity {
                     @Override
                     public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_popular, parent,false);
-                        FoodViewHolder holder = new FoodViewHolder(view, context, foodList);
+                        FoodViewHolder holder = new FoodViewHolder(view);
                         return holder;
                     }
                 } ;

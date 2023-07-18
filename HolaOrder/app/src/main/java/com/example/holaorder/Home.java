@@ -57,7 +57,6 @@ import java.util.List;
 
 public class Home extends AppCompatActivity {
     Context context;
-    Button LogoutBtn;
     DatabaseReference table_category;
     DatabaseReference table_product;
     TextView textItem;
@@ -91,16 +90,7 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        LogoutBtn = (Button) findViewById(R.id.textView5);
 
-        LogoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Prevalent.currentOnlineUser = null;
-                Intent intent = new Intent(Home.this, SignIn.class);
-                startActivity(intent);
-            }
-        });
 
         searchHome = findViewById(R.id.searchHome);
         searchHome.setOnClickListener(new View.OnClickListener() {
@@ -178,7 +168,7 @@ public class Home extends AppCompatActivity {
             @Override
             public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_popular, parent,false);
-                FoodViewHolder holder = new FoodViewHolder(view, context, foodList);
+                FoodViewHolder holder = new FoodViewHolder(view);
                 return holder;
             }
 

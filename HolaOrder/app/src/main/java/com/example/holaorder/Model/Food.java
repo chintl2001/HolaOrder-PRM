@@ -40,14 +40,6 @@ public class Food {
         Rate = rate;
     }
 
-    public String getId() {
-        return Id;
-    }
-
-    public void setId(String id) {
-        Id = id;
-    }
-
     public String getName() {
         return Name;
     }
