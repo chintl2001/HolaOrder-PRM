@@ -4,6 +4,7 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/baseline_home_24"
+            android:onClick="clickHome"
             android:title="@string/nav_home" />
 
         <item
@@ -18,6 +19,7 @@
             android:title="@string/nav_type" />
         <item
                 android:id="@+id/nav_food"
+                android:onClick="listFood"
                 android:icon="@drawable/baseline_fastfood_24"
                 android:title="@string/nav_food" />
 
