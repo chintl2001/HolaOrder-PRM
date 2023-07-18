@@ -37,7 +37,7 @@
         android:id="@+id/rv_cart"
         style="@style/Theme.AppCompat.Light.NoActionBar"
         android:layout_width="match_parent"
-        android:layout_height="550dp"
+        android:layout_height="520dp"
 
         android:background="@color/white"
         tools:listitem="@layout/item_cart" />
@@ -95,7 +95,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textColor="@color/white"
-            android:layout_marginTop="30dp"
             android:background="@drawable/button_black"
             android:text="Order" />
 
