@@ -31,7 +31,7 @@ public class SellerCategory extends AppCompatActivity {
             public void onClick(View view)
             {
                 Intent intent = new Intent(SellerCategory.this, SellerAddNewFood.class);
-                intent.putExtra("category", "drink");
+                intent.putExtra("category", "Drink");
                 startActivity(intent);
             }
         });
