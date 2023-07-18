@@ -58,7 +58,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
             title = itemView.findViewById(R.id.title);
             fee = itemView.findViewById(R.id.fee);
             pic = itemView.findViewById(R.id.pic);
-            addBtn = itemView.findViewById(R.id.addBtn);
+//            addBtn = itemView.findViewById(R.id.addBtn);
         }
     }
 }

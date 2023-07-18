@@ -1,6 +1,16 @@
 package com.example.holaorder.Model;
 
+import androidx.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
 public class Food {
+    private String Id;
     private String Name;
     private String Image;
     private String CategoryId;
@@ -10,6 +20,14 @@ public class Food {
     private String Rate;
 
     public Food() {
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
     }
 
     public Food(String name, String image, String categoryId, String description, String discount, String price, String rate) {
@@ -81,13 +99,14 @@ public class Food {
     @Override
     public String toString() {
         return "Food{" +
+                "Id='" + Id + '\'' +
                 ", Name='" + Name + '\'' +
                 ", Image='" + Image + '\'' +
                 ", CategoryId='" + CategoryId + '\'' +
                 ", Description='" + Description + '\'' +
                 ", Discount='" + Discount + '\'' +
                 ", Price='" + Price + '\'' +
-                ", Rate=" + Rate +
+                ", Rate='" + Rate + '\'' +
                 '}';
     }
 }

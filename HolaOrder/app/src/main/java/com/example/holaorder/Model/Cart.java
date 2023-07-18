@@ -1,27 +1,27 @@
 package com.example.holaorder.Model;
 
 public class Cart {
-    private String fname;
+    private String name;
     private String price;
     private String quantity;
-    private String image;
+    private String Image;
 
     public Cart() {
     }
 
-    public Cart(String fname, String price, String quantity, String image) {
-        this.fname = fname;
+    public Cart(String name, String price, String quantity, String image) {
+        this.name = name;
         this.price = price;
         this.quantity = quantity;
-        this.image = image;
+        this.Image = image;
     }
 
-    public String getFname() {
-        return fname;
+    public String getName() {
+        return name;
     }
 
-    public void setFname(String fname) {
-        this.fname = fname;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPrice() {
@@ -41,11 +41,11 @@ public class Cart {
     }
 
     public String getImage() {
-        return image;
+        return Image;
     }
 
     public void setImage(String image) {
-        this.image = image;
+        this.Image = image;
     }
 }
 

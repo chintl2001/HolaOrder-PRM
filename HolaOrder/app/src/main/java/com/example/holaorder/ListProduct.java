@@ -22,15 +22,23 @@ import com.example.holaorder.Interface.ItemClickListener;
 import com.example.holaorder.Model.Category;
 import com.example.holaorder.Model.Food;
 import com.example.holaorder.Model.User;
+import com.example.holaorder.Prevalent.Prevalent;
 import com.example.holaorder.ViewHolder.CategoryViewHolder;
 import com.example.holaorder.ViewHolder.FoodViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ListProduct extends AppCompatActivity {
@@ -78,7 +86,7 @@ public class ListProduct extends AppCompatActivity {
         btn_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ListProduct.this,CartActivity.class);
+                Intent intent = new Intent(ListProduct.this,FavoritesAct.class);
                 startActivity(intent);
             }
         });
@@ -175,6 +183,7 @@ public class ListProduct extends AppCompatActivity {
                 foodViewHolder.tvPrice.setText(food.getPrice());
                 foodViewHolder.rate.setRating(Float.parseFloat(food.getRate()));
                 Food clickItem = food;
+                food.setId(foodId);
                 Log.d("Food", food.toString());
 
                 foodViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -190,6 +199,48 @@ public class ListProduct extends AppCompatActivity {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         Toast.makeText(ListProduct.this, clickItem.getName(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+                foodViewHolder.btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String saveCurrentTime, saveCurrentDate;
+
+                        Calendar calForDate = Calendar.getInstance();
+                        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
+                        saveCurrentDate = currentDate.format(calForDate.getTime());
+
+                        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
+                        saveCurrentTime = currentTime.format(calForDate.getTime());
+
+                        DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("FavoriteList");
+
+                        final HashMap<String, Object> cartMap = new HashMap<>();
+                        cartMap.put("foodId",foodId);
+                        cartMap.put("name", foodViewHolder.tvFoodName.getText().toString());
+                        cartMap.put("price", foodViewHolder.tvPrice.getText().toString());
+                        cartMap.put("rate", food.getRate());
+                        cartMap.put("date", saveCurrentDate);
+                        cartMap.put("time", saveCurrentTime);
+                        cartMap.put("Image",  food.getImage());
+
+
+                        String cartItemId = cartListRef.child("FavoriteView")
+                                .child(Prevalent.currentOnlineUser.getPhone()).child("Foods")
+                                .push().getKey();
+                        cartListRef.child("FavoriteView")
+                                .child(Prevalent.currentOnlineUser.getPhone())
+                                .child("Foods").child(cartItemId).setValue(cartMap)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(ListProduct.this, "Added to Favorite ", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
                     }
                 });
             }
@@ -235,6 +286,11 @@ public class ListProduct extends AppCompatActivity {
 
     public void changePass(MenuItem item) {
         Intent intent = new Intent(this, ChangePasswordAct.class);
+        startActivity(intent);
+    }
+
+    public void viewCart(MenuItem item) {
+        Intent intent = new Intent(this, CartActivity.class);
         startActivity(intent);
     }
 }

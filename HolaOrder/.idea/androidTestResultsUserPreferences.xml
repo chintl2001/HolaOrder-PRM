@@ -10,6 +10,8 @@
                 <map>
                   <entry key="Duration" value="90" />
                   <entry key="Tests" value="360" />
+                  <entry key="emulator-5554" value="120" />
+                  <entry key="samsung" value="120" />
                   <entry key="samsung&#10; SM-N960N" value="120" />
                 </map>
               </option>
