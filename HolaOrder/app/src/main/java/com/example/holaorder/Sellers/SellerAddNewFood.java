@@ -36,14 +36,14 @@ import io.reactivex.rxjava3.annotations.NonNull;
 
 public class SellerAddNewFood extends AppCompatActivity {
     private String CategoryName, Description, Price, Pname, saveCurrentDate, saveCurrentTime;
-    private float rate;
     private Button AddNewProductButton;
     private ImageView InputProductImage;
     private EditText InputProductName, InputProductDescription, InputProductPrice;
     private static final int GalleryPick = 1;
     private Uri ImageUri;
-    private String productRandomKey, downloadImageUrl;
+    private String foodId, downloadImageUrl;
     private static int currentId = 0;
+    private DatabaseReference currentIdRef;
     private StorageReference ProductImagesRef;
     private DatabaseReference ProductsRef;
     private DatabaseReference sellersRef;
@@ -66,6 +66,23 @@ public class SellerAddNewFood extends AppCompatActivity {
         InputProductDescription = (EditText) findViewById(R.id.product_description);
         InputProductPrice = (EditText) findViewById(R.id.product_price);
 
+        currentIdRef = FirebaseDatabase.getInstance().getReference().child("currentId");
+
+        currentIdRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    currentId = snapshot.getValue(Integer.class);
+                } else {
+                    currentId = 0;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         InputProductImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,12 +177,15 @@ public class SellerAddNewFood extends AppCompatActivity {
         saveCurrentDate = currentDate.format(calendar.getTime());
 
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
+
         saveCurrentTime = currentTime.format(calendar.getTime());
 
-        productRandomKey =String.valueOf(currentId + 1);
         currentId++;
+        String formattedId = String.format("%02d", currentId);
+        currentIdRef.setValue(currentId);
+        foodId = formattedId;
 
-        final StorageReference filePath = ProductImagesRef.child(ImageUri.getLastPathSegment() + productRandomKey + ".jpg");
+        final StorageReference filePath = ProductImagesRef.child(ImageUri.getLastPathSegment() + foodId + ".jpg");
 
         final UploadTask uploadTask = filePath.putFile(ImageUri);
 
@@ -218,29 +238,30 @@ public class SellerAddNewFood extends AppCompatActivity {
     private void SaveProductInfoToDatabase()
     {
         HashMap<String, Object> productMap = new HashMap<>();
-        productMap.put("foodId", productRandomKey);
+        productMap.put("foodId", foodId);
         productMap.put("date", saveCurrentDate);
         productMap.put("time", saveCurrentTime);
-        productMap.put("description", Description);
-        productMap.put("image", downloadImageUrl);
-        productMap.put("category", CategoryName);
-        productMap.put("price", Price);
-        productMap.put("rate", rate);
-        productMap.put("name", Pname);
+        productMap.put("Description", Description);
+        productMap.put("Image", downloadImageUrl);
+        productMap.put("CategoryId", CategoryName);
+        productMap.put("Price", Price);
+        productMap.put("Rate", "0");
+        productMap.put("Name", Pname);
+        productMap.put("Discount","0");
 
         productMap.put("sellerName", sName);
         productMap.put("sellerPhone", sPhone);
         productMap.put("sellerEmail", sEmail);
         productMap.put("sid", sId);
 
-        ProductsRef.child(productRandomKey).updateChildren(productMap)
+        ProductsRef.child(foodId).updateChildren(productMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task)
                     {
                         if (task.isSuccessful())
                         {
-                            Intent intent = new Intent(SellerAddNewFood.this, SellerCategory.class);
+                            Intent intent = new Intent(SellerAddNewFood.this, SellerHomeActivity.class);
                             startActivity(intent);
 
                             Toast.makeText(SellerAddNewFood.this, "Food is added successfully..", Toast.LENGTH_SHORT).show();

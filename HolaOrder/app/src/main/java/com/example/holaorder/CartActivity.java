@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.holaorder.Interface.ItemClickListener;
 import com.example.holaorder.Model.Cart;
 import com.example.holaorder.Model.Category;
+import com.example.holaorder.Model.Food;
 import com.example.holaorder.Prevalent.Prevalent;
 import com.example.holaorder.ViewHolder.CartViewHolder;
 import com.example.holaorder.ViewHolder.CategoryViewHolder;
@@ -95,18 +96,14 @@ public class CartActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull CartViewHolder holder, int position, @NonNull Cart model) {
                 String foodId = getRef(position).getKey();
+                Cart clickItem = model;
+                Log.d("My App", model.toString());
+
                 Picasso.get().load(model.getImage()).into(holder.imgFood);
-                holder.tvFoodName.setText(model.getFname());
+                holder.tvFoodName.setText(model.getName());
                 holder.tvPrice.setText("Price: " + model.getPrice() + "$");
                 holder.tvQuantity.setText("Quantity: " + model.getQuantity());
-                Cart clickItem = model;
-                Log.d("Cart", clickItem.toString());
-                holder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(CartActivity.this, clickItem.getFname(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+
 
                 //TotalPrice
                 int totalPriceOfPFood = ((Integer.valueOf(model.getPrice()))) * Integer.valueOf(model.getQuantity());

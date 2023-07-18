@@ -6,6 +6,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -85,14 +86,14 @@ public class DetailFood extends AppCompatActivity {
 
         final HashMap<String, Object> cartMap = new HashMap<>();
         cartMap.put("FoodId", foodId);
-        cartMap.put("fname", "");
+        cartMap.put("name", "");
         cartMap.put("price", "");
         cartMap.put("rate", 0);
         cartMap.put("date", saveCurrentDate);
         cartMap.put("time", saveCurrentTime);
         cartMap.put("quantity", numberButton.getNumber());
         cartMap.put("discount", "");
-        cartMap.put("imageUrl", ""); // Thêm đường dẫn URL của ảnh
+        cartMap.put("Image", ""); // Thêm đường dẫn URL của ảnh
 
         DatabaseReference foodRef = FirebaseDatabase.getInstance().getReference().child("Foods").child(foodId);
         foodRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -100,10 +101,10 @@ public class DetailFood extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     Food food = dataSnapshot.getValue(Food.class);
-                    cartMap.put("fname", food.getName());
+                    cartMap.put("name", food.getName());
                     cartMap.put("price", food.getPrice());
                     cartMap.put("rate", food.getRate());
-                    cartMap.put("imageUrl", food.getImage()); // Thêm đường dẫn URL của ảnh
+                    cartMap.put("Image", food.getImage()); // Thêm đường dẫn URL của ảnh
 
                     cartListRef.child("CartView")
                             .child(Prevalent.currentOnlineUser.getPhone())
