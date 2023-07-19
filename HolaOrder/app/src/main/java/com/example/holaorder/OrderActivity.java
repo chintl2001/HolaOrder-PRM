@@ -3,6 +3,9 @@ package com.example.holaorder;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -22,6 +25,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.RemoteInput;
 
 public class OrderActivity extends AppCompatActivity {
 
@@ -78,7 +85,35 @@ public class OrderActivity extends AppCompatActivity {
             Toast.makeText(this, "Please provide your Name", Toast.LENGTH_SHORT).show();
         } else {
             confirmOrder();
+
+            String channel_id = "Order_app";
+            int count = 0;
+
+            NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                NotificationChannel channel = new NotificationChannel(channel_id,
+                        "My first channel!", NotificationManager.IMPORTANCE_HIGH);
+                manager.createNotificationChannel(channel);
+                Intent intent = new Intent(this, MainActivity.class);
+                PendingIntent pendingIntent = PendingIntent.getActivity(this, 1000, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                RemoteInput remoteInput = new RemoteInput.Builder("result_key")
+                        .setLabel("Input your message").build();
+                NotificationCompat.Action action = new NotificationCompat.Action.Builder(android.R.drawable.ic_btn_speak_now,
+                        "Reply", pendingIntent).addRemoteInput(remoteInput).build();
+
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channel_id);
+                builder.setContentTitle("Hola Order Delivery")
+                        .setContentText("Order Success!")
+                        .setSmallIcon(android.R.drawable.ic_dialog_info)
+                        .addAction(action);
+
+                manager.notify(count,builder.build());
+                count ++;
+            }
+
         }
+
 
 
     }
