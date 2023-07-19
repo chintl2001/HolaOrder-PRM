@@ -1,7 +1,6 @@
 package com.example.holaorder;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,9 +41,6 @@ import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ListProduct extends AppCompatActivity {
     RecyclerView recyclerViewCategory, recyclerViewProduct;
     DatabaseReference table_category;
@@ -56,8 +52,6 @@ public class ListProduct extends AppCompatActivity {
     DrawerLayout drawerLayout;
     //Search
     EditText searchView;
-    public Context context;
-    private List<Food> foodList;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -81,21 +75,14 @@ public class ListProduct extends AppCompatActivity {
         recyclerViewProduct = (RecyclerView) findViewById(R.id.productRecyclerView);
         GridLayoutManager layoutManagerGrid = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
         recyclerViewProduct.setLayoutManager(layoutManagerGrid);
-       //((TextView) findViewById(R.id.tvHelloUser)).setText(Common.currentUser.getName());
+        //((TextView) findViewById(R.id.tvHelloUser)).setText(Common.currentUser.getName());
         ((TextView) findViewById(R.id.tvHelloUser)).setText(Common.currentUser.getName());
 
         loadCategory();
         loadProduct("");
         NavSettup();
 
-        ImageButton btn_cart = (ImageButton)  findViewById(R.id.cartViewButton);
-        btn_cart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ListProduct.this,FavoritesAct.class);
-                startActivity(intent);
-            }
-        });
+
 
         //ToDo:Search
         searchView = findViewById(R.id.searchView);
@@ -177,10 +164,7 @@ public class ListProduct extends AppCompatActivity {
             @Override
             public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_popular, parent,false);
-                // Khởi tạo ViewHolder và truyền foodList vào
-                foodList = new ArrayList<>();
-
-                FoodViewHolder holder = new FoodViewHolder(view, parent.getContext(), foodList);
+                FoodViewHolder holder = new FoodViewHolder(view);
                 return holder;
             }
 
@@ -258,6 +242,7 @@ public class ListProduct extends AppCompatActivity {
         adapter.startListening();
     }
 
+
     private void NavSettup() {
         navigationView = findViewById(R.id.navbar);
         imgUser = navigationView.getHeaderView(0).findViewById(R.id.img_user);
@@ -270,6 +255,7 @@ public class ListProduct extends AppCompatActivity {
         Picasso.get().load(user.getImage()).into(imgUser);
         txtFullName.setText(user.getName());
         txtEmail.setText(user.getEmail());
+        //TODO: upload profile
 
         findViewById(R.id.img_menu).setOnClickListener(v -> ShowNavigationBar());
     }
@@ -278,6 +264,8 @@ public class ListProduct extends AppCompatActivity {
 
 
     }
+
+
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
@@ -299,13 +287,27 @@ public class ListProduct extends AppCompatActivity {
 
     public void viewCart(MenuItem item) {
         Intent intent = new Intent(this, CartActivity.class);
-    public void listFood(MenuItem item) {
+        startActivity(intent);
+    }
+
+    public void clickLogout(MenuItem item) {
+        Prevalent.currentOnlineUser = null;
+        Intent intent = new Intent(this, SignIn.class);
+        startActivity(intent);
+    }
+
+    public void listFoods(MenuItem item) {
         Intent intent = new Intent(this, ListProduct.class);
         startActivity(intent);
     }
 
-    public void clickHome(MenuItem item) {
+    public void home(MenuItem item) {
         Intent intent = new Intent(this, Home.class);
+        startActivity(intent);
+    }
+
+    public void favorite(MenuItem item) {
+        Intent intent = new Intent(this, FavoritesAct.class);
         startActivity(intent);
     }
 }

@@ -39,9 +39,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class FavoritesAct extends AppCompatActivity {
-    public User currentUser = Common.currentUser;
-
-public class FavoritesAct extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     @Override
@@ -151,5 +148,5 @@ public class FavoritesAct extends AppCompatActivity {
     }
 
 }
-}
+
 
