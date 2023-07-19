@@ -44,14 +44,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -108,6 +112,7 @@ public class Home extends AppCompatActivity {
     }
 
     private void recyclerViewCaregory() {
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerViewCaregoryList = findViewById(R.id.recyclerView);
         recyclerViewCaregoryList.setLayoutManager(linearLayoutManager);
@@ -147,20 +152,26 @@ public class Home extends AppCompatActivity {
     }
 
     private void recyclerViewPopular(String category) {
+        //FirebaseDatabase database = FirebaseDatabase.getInstance();
+        //DatabaseReference table_product = database.getReference("Foods");
         Query qrr;
         if (category.isEmpty()) {
             qrr = table_product;
+            qrr = qrr.limitToFirst(3).orderByChild("randomField");
         } else {
             qrr = table_product.orderByChild("CategoryId").equalTo(category);
         }
+
+
         FirebaseRecyclerOptions<Food> options =
                 new FirebaseRecyclerOptions.Builder<Food>()
                         .setQuery(qrr, Food.class)
                         .build();
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        GridLayoutManager layoutManagerGrid = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerViewPopularList = findViewById(R.id.recyclerView2);
-        recyclerViewPopularList.setLayoutManager(linearLayoutManager);
+        recyclerViewPopularList.setLayoutManager(layoutManagerGrid);
 
 
         FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
