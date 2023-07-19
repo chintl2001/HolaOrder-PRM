@@ -105,7 +105,7 @@ public class OrderActivity extends AppCompatActivity {
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channel_id);
                 builder.setContentTitle("Hola Order Delivery")
                         .setContentText("Order Success!")
-                        .setSmallIcon(android.R.drawable.ic_dialog_info)
+                        .setSmallIcon(R.drawable.su_border_btn)
                         .addAction(action);
 
                 manager.notify(count,builder.build());
