@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -116,6 +117,8 @@ public class DetailFood extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(DetailFood.this, "Add to cart successfully", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(DetailFood.this,CartActivity.class);
+                                        startActivity(intent);
                                     }
                                 }
                             });
