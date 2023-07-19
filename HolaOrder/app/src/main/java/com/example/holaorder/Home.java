@@ -62,7 +62,7 @@ public class Home extends AppCompatActivity {
     DatabaseReference table_category;
     DatabaseReference table_product;
     TextView textItem;
-    ImageView imageView;
+    ImageView imageUser;
     private List<Food> foodList;
     private RecyclerView.Adapter adapter, adapter2;
     private RecyclerView recyclerViewCaregoryList, recyclerViewPopularList;
@@ -80,10 +80,10 @@ public class Home extends AppCompatActivity {
         table_category = database.getReference("Category");
         table_product = database.getReference("Foods");
         DatabaseReference table_product = database.getReference("Product");
-        imageView = findViewById(R.id.imageView);
+        imageUser = findViewById(R.id.imageUser);
 
         ((TextView) findViewById(R.id.textHello)).setText("Hello, " + Common.currentUser.getName());
-        Picasso.get().load(Common.currentUser.getImage()).into(imageView);
+        Picasso.get().load(Common.currentUser.getImage()).into(imageUser);
         recyclerViewCaregory();
         recyclerViewPopular("");
 
@@ -108,6 +108,29 @@ public class Home extends AppCompatActivity {
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 // Intent sang Activity khác
                 Intent intent = new Intent(Home.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        DatabaseReference foodsRef = database.getReference("Foods");
+
+        foodsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int count = (int) dataSnapshot.getChildrenCount();
+                TextView textView = findViewById(R.id.number_Food);
+                textView.setText(count + " Foods");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+        imageUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, ProfileActivity.class);
                 startActivity(intent);
             }
         });

@@ -1,5 +1,6 @@
 package com.example.holaorder;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.Debug;
 import android.view.View;
@@ -22,33 +23,44 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProfileActivity extends AppCompatActivity {
-    TextView tvPhone ;
-    TextView tvName ;
+    /*TextView tvPhone ;
+    TextView tvName ;*/
     ImageView imgUser;
     EditText edtEmail;
     EditText edtPhone;
     EditText edtName;
     Button btnEdit;
+    TextView tv_Order;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-            tvPhone = findViewById(R.id.tvPhone);
-            tvName = findViewById(R.id.tvNam);
+           /* tvPhone = findViewById(R.id.tvPhone);
+            tvName = findViewById(R.id.tvNam);*/
             imgUser = findViewById(R.id.imgUser);
             edtEmail = findViewById(R.id.edtEmail);
             edtPhone = findViewById(R.id.edtPhone);
             edtName = findViewById(R.id.edtName);
             btnEdit = findViewById(R.id.btnEdit);
+            tv_Order = findViewById(R.id.tvMyOrder);
             User user = Common.currentUser;
-            tvPhone.setText(user.getPhone());
-            tvName.setText(user.getName());
+            /*tvPhone.setText(user.getPhone());
+            tvName.setText(user.getName());*/
             edtEmail.setText(user.getEmail());
             edtPhone.setText(user.getPhone());
             edtName.setText(user.getName());
             Picasso.get().load(user.getImage()).into(imgUser);
+
+
+        tv_Order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, CartActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

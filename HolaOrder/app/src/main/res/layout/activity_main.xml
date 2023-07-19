@@ -27,7 +27,7 @@
             app:layout_constraintStart_toStartOf="@+id/view2" android:layout_marginStart="24dp"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.011"/>
     <TextView
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sollicitudin lectus id nunc sollicitudin congue. Nam ligula est, pretium vel dui aliquet, malesuada pretium risus."
+            android:text="HolaOrder provides food, beverage and snack ordering services, you can also become sellers on the platform, let's also build the best ordering system in Hoa Lac."
             android:layout_width="357dp"
             android:layout_height="91dp" android:id="@+id/textView2"
             android:textColor="#000000" android:textSize="16sp" app:layout_constraintEnd_toEndOf="parent"
