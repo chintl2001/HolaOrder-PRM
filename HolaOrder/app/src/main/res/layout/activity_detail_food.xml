@@ -97,23 +97,22 @@
 
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="12dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="12dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal" android:background="@color/teal_700">
 
 
                         <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
-                            android:id="@+id/number_btn"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:elevation="6dp"
-                            app:finalNumber="10"
-                            app:initialNumber="1">
+                                android:id="@+id/number_btn"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:elevation="6dp"
+                                app:finalNumber="10"
+                                app:initialNumber="1" android:background="@color/teal_700">
 
                         </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
 

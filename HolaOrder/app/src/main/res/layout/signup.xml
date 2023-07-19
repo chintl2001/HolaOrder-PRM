@@ -81,20 +81,20 @@
         app:layout_constraintTop_toBottomOf="@+id/edt_phone" />
 
     <Button
-        android:id="@+id/btn_signUp"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/su_border_btn"
-        android:backgroundTint="#000000"
-        android:text="SignUp"
-        android:textColor="@color/white"
-        android:textColorHighlight="#00FFFFFF"
-        android:textColorLink="#00FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_Password"
-        app:toggleCheckedStateOnClick="false" />
+            android:id="@+id/btn_signUp"
+            android:layout_width="300dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/su_border_btn"
+            android:backgroundTint="@color/teal_700"
+            android:text="SignUp"
+            android:textColor="@color/white"
+            android:textColorHighlight="#00FFFFFF"
+            android:textColorLink="#00FFFFFF"
+            app:layout_constraintEnd_toEndOf="@+id/view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_Password"
+            app:toggleCheckedStateOnClick="false"/>
 
     <View
         android:id="@+id/view2"

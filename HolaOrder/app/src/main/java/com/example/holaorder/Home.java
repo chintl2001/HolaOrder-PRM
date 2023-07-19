@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -19,10 +20,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.example.holaorder.Adapter.CategoryAdapter;
@@ -65,6 +62,7 @@ public class Home extends AppCompatActivity {
     DatabaseReference table_category;
     DatabaseReference table_product;
     TextView textItem;
+    ImageView imageView;
     private List<Food> foodList;
     private RecyclerView.Adapter adapter, adapter2;
     private RecyclerView recyclerViewCaregoryList, recyclerViewPopularList;
@@ -82,8 +80,10 @@ public class Home extends AppCompatActivity {
         table_category = database.getReference("Category");
         table_product = database.getReference("Foods");
         DatabaseReference table_product = database.getReference("Product");
+        imageView = findViewById(R.id.imageView);
 
         ((TextView) findViewById(R.id.textHello)).setText("Hello, " + Common.currentUser.getName());
+        Picasso.get().load(Common.currentUser.getImage()).into(imageView);
         recyclerViewCaregory();
         recyclerViewPopular("");
 

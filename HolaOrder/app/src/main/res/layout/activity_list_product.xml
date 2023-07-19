@@ -23,7 +23,7 @@
                     android:id="@+id/toolbar_main"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:background="#1f4167"
+                    android:background="@color/teal_700"
                     app:layout_collapseMode="pin">
                 <ImageView
                         android:layout_width="60dp"
@@ -32,7 +32,7 @@
                         android:layout_centerHorizontal="true" tools:srcCompat="@drawable/deliveryman"/>
                 <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" android:background="#1f4167">
+                        android:layout_height="match_parent" android:background="@color/teal_700">
                     <ImageView
                             android:id="@+id/img_menu"
                             android:layout_width="30dp"

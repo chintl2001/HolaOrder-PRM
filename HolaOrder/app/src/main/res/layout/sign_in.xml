@@ -147,7 +147,7 @@
     <Button
             android:id="@+id/btn_seller_SI"
             android:layout_width="330dp"
-            android:layout_height="50dp"
+            android:layout_height="62dp"
             android:background="@drawable/button_black"
             android:text="Wants to become a Seller"
             android:textColor="@color/white"
