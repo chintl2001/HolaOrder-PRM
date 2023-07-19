@@ -20,20 +20,22 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-            android:text="Order"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                android:text="Order"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
     </LinearLayout>
     <!--   android:layout_height="389dp"     -->
     <androidx.recyclerview.widget.RecyclerView
+         android:layout_marginTop="15dp"
+         android:layout_marginBottom="15dp"
         android:id="@+id/rv_cart"
         style="@style/Theme.AppCompat.Light.NoActionBar"
         android:layout_width="match_parent"
