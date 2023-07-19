@@ -9,6 +9,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -67,6 +68,8 @@ public class Home extends AppCompatActivity {
     private List<Food> foodList;
     private RecyclerView.Adapter adapter, adapter2;
     private RecyclerView recyclerViewCaregoryList, recyclerViewPopularList;
+
+    private ConstraintLayout btnAllFood;
     //Search
     EditText searchHome;
     @SuppressLint("SetTextI18n")
@@ -84,16 +87,16 @@ public class Home extends AppCompatActivity {
         recyclerViewCaregory();
         recyclerViewPopular("");
 
-        textItem = ((TextView) findViewById(R.id.textItem));
 
-        textItem.setOnClickListener(new View.OnClickListener() {
+        btnAllFood = (ConstraintLayout) findViewById(R.id.allFood);
+
+        btnAllFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent product = new Intent(Home.this, ListProduct.class);
                 startActivity(product);
             }
         });
-
 
 
         searchHome = findViewById(R.id.searchHome);
@@ -157,7 +160,7 @@ public class Home extends AppCompatActivity {
         Query qrr;
         if (category.isEmpty()) {
             qrr = table_product;
-            qrr = qrr.limitToFirst(3).orderByChild("randomField");
+            qrr = qrr.limitToFirst(4).orderByChild("randomField");
         } else {
             qrr = table_product.orderByChild("CategoryId").equalTo(category);
         }
@@ -168,7 +171,7 @@ public class Home extends AppCompatActivity {
                         .setQuery(qrr, Food.class)
                         .build();
 
-        GridLayoutManager layoutManagerGrid = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        GridLayoutManager layoutManagerGrid = new GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false);
         //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerViewPopularList = findViewById(R.id.recyclerView2);
         recyclerViewPopularList.setLayoutManager(layoutManagerGrid);
